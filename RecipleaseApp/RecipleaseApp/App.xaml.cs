@@ -6,6 +6,15 @@ namespace RecipleaseApp
 {
     public partial class App : Application
     {
+        public static bool IsDevEnv 
+        { 
+            get
+            {
+                return true;
+            }   
+
+        }
+
         public App()
         {
             InitializeComponent();
