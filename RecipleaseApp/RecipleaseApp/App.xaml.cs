@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using RecipleaseApp.Views;
 
 namespace RecipleaseApp
 {
@@ -19,7 +20,7 @@ namespace RecipleaseApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new LogInView();
         }
 
         protected override void OnStart()
