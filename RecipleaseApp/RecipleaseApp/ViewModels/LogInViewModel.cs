@@ -5,7 +5,8 @@ using System.Text;
 using Xamarin.Essentials;
 using System.Windows.Input;
 using Xamarin.Forms;
-
+using RecipleaseApp.Services;
+using RecipleaseApp.Models;
 
 namespace RecipleaseApp.ViewModels
 {
@@ -40,11 +41,37 @@ namespace RecipleaseApp.ViewModels
             }
         }
 
+
+        //error message
+        private string errormes;
+        public string ErrorMes
+        {
+            get { return errormes; }
+
+            set
+            {
+                errormes = "something went wrong! please try again";
+            }
+        }
+
+
         //Submit Command 
         public ICommand SubmitCommand => new Command(OnSubmit);
-        private void OnSubmit()
+        private async void OnSubmit()
         {
+            RecipleaseAPIProxy proxy = RecipleaseAPIProxy.CreateProxy();
+            User u = await proxy.LoginAsync(Email, Password);
+            if (u == null)
+            {
 
+            }
+            else
+            {
+                App app = (App) App.Current;
+                app.TheUser = u;
+                //Move to next screen
+                //app.MainPage = ....
+            }
         }
 
 

@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using RecipleaseApp.Views;
+using RecipleaseApp.Models;
 
 namespace RecipleaseApp
 {
@@ -16,6 +17,8 @@ namespace RecipleaseApp
 
         }
 
+        public  User TheUser { get; set; }
+        
         public App()
         {
             InitializeComponent();

@@ -4,13 +4,15 @@
              x:Class="RecipleaseApp.Views.LogInView">
     <ContentPage.Content>
         <StackLayout>
-            <Frame BackgroundColor="LemonChiffon" >
+            <Frame BackgroundColor="CornflowerBlue" >
                 <StackLayout>
-                    <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Enter Email"   
+                    
+                    <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Enter Email" FontFamily=""  
                            Keyboard="Email"  />
 
                     <Entry x:Name="Password" Text="{Binding Password}" Placeholder="Enter Password"  
                           />
+                    <Label Text="{Binding ErrorMes}"/>
                 </StackLayout>
             </Frame>
             <Button Command="{Binding SubmitCommand}" Text="Login"  /> 
