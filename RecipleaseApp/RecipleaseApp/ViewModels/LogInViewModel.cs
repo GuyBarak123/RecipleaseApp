@@ -15,7 +15,7 @@ namespace RecipleaseApp.ViewModels
     
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //Name
+        //Email
         private string email;
         public string Email
         {
