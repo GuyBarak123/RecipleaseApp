@@ -16,7 +16,8 @@
                     <Label Text="{Binding ErrorMes}"/>
                 </StackLayout>
             </Frame>
-            <Button Command="{Binding SubmitCommand}" Text="Login"  /> 
+            <Button Command="{Binding SubmitCommand}" Text="Login"  />
+            <Button Command="{Binding GoToSignUpCommand}" Text="New Here? Sign Up!"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

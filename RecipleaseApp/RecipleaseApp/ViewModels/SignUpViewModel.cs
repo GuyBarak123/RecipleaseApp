@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using System.Text.RegularExpressions;
 using RecipleaseApp.Services;
 using RecipleaseApp.Models;
+using RecipleaseApp.Views;
 
 namespace RecipleaseApp.ViewModels
 {
@@ -186,14 +187,24 @@ namespace RecipleaseApp.ViewModels
         #endregion
 
         #region Gender
-        private int gender;
-        public int Gender
+        private Gender gender;
+        public Gender SelectedGender
         {
-            get { return gender; }
+            get => gender;
+
             set
             {
                 gender = value;
-                OnPropertyChanged("Gender");
+                OnPropertyChanged("SelectedGender");
+            }
+        }
+
+        public List<Gender> Genders
+        {
+            get
+            {
+                App app = (App)App.Current;
+                return app.Genders;
             }
         }
 
@@ -218,6 +229,7 @@ namespace RecipleaseApp.ViewModels
 
         #endregion
 
+
         //submit command
         public ICommand SubmitCommand => new Command(OnSubmit);
         private async void OnSubmit()
@@ -232,22 +244,26 @@ namespace RecipleaseApp.ViewModels
                 TagId=this.tag
             };
 
-          //  User u = await proxy.SignUpAsync(use);
+            User u = await proxy.SignUpAsync(use.Email, use.Password, use.Name, use.GenderId, use.TagId) 
+            if (u == null)
+            {
+                Console.WriteLine("Something Happened! Sign Up Did Not Work ");
+            }
+            else
+            {
+                App app = (App)App.Current;
+                app.TheUser = use;
+                Console.WriteLine("Thank You For Signing Up Tp Reciplease!");
+                // page p=new HomePage();
+                //app.MainPage= new NavigationPage(p);
+            }
+        }
 
-            //if (u==null)
-            //{
-            //    Console.WriteLine("Something Happened! Sign Up Did Not Work ");
-            //}
-            //else
-            //{
-            //    App app = (App)App.Current;
-            //    app.TheUser = use;
-            //    Console.WriteLine("Thank You For Signing Up Tp Reciplease!");
-            //    // page p=new HomePage();
-            //    //app.MainPage= new NavigationPage(p);
-            //}
-
-          
+        public ICommand GoToLogInCommand => new Command(OnGoToLogInSubmit);
+        private async void OnGoToLogInSubmit()
+        {
+            Page p = new LogInView();
+            App.Current.MainPage = p;
         }
     }
 }

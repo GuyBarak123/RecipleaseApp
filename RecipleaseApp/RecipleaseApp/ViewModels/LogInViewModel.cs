@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using RecipleaseApp.Services;
 using RecipleaseApp.Models;
+using RecipleaseApp.Views;
 
 namespace RecipleaseApp.ViewModels
 {
@@ -70,7 +71,7 @@ namespace RecipleaseApp.ViewModels
                 App app = (App) App.Current;
                 app.TheUser = u;
                 //Move to next screen
-                //app.MainPage = ....
+                app.MainPage = new SIgnUpView();
             }
         }
 
@@ -78,6 +79,13 @@ namespace RecipleaseApp.ViewModels
 
 
         //Go to sign up command 
+        public ICommand GoToSignUpCommand => new Command(OnGoToSignUpSubmit);
+        private async void OnGoToSignUpSubmit()
+        {
+            Page p = new SIgnUpView();
+            App.Current.MainPage = p;
+
+        }
 
     }
 }
