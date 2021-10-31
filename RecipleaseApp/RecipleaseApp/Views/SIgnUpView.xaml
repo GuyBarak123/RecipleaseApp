@@ -1,10 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:RecipleaseApp.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="RecipleaseApp.Views.SIgnUpView">
-    <ContentPage.BindingContext>
-        <local:SignUpViewModel></local:SignUpViewModel>
-    </ContentPage.BindingContext>
+    
     
     <ContentPage.Content>
         <StackLayout>
@@ -12,23 +10,24 @@
                 <Frame  >
                     <StackLayout>
 
-                        <Image Source="images//logo.png" />
+                        <Image Source="logo.png" />
                         <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Enter Email" FontFamily=""  
                            Keyboard="Email"  />
 
                         <Entry x:Name="Password" Text="{Binding Password}" Placeholder="Enter Password" 
                           />
                         <Entry x:Name="Name" Text="{Binding Name}" Placeholder="Enter Name"/>
-                        
-                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10" RadioButtonGroup.GroupName="Gender" RadioButtonGroup.SelectedValue="{Binding Gender}">
-                            <RadioButton GroupName="Gender" IsChecked="True" Content="Female" Value="Female"/>
-                            <RadioButton GroupName="Gender" Grid.Column="1" Content="Male" Value="Male"/>
-                            <RadioButton GroupName="Gender" Grid.Column="2" Content="Other" Value="Other"/>
-                        </Grid>
-                        
+                        <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" />
+                        <Label Text="Gender" />
+                        <Picker Title="Pick Gender" ItemsSource="{Binding Genders}" ItemDisplayBinding="{Binding GenderName}" SelectedItem="{Binding SelectedGender}"/>
+                        <Label Text="Tag" />
+                        <Picker Title="Pick Your Favorite" ItemsSource="{Binding Tags}" ItemDisplayBinding="{Binding TagName}" SelectedItem="{Binding SelectedTag}"/>
+
+
+
                     </StackLayout>
                 </Frame>
-                <Button Command="{Binding SubmitCommand}" Text="SignUp"  />
+                <Button Command="{Binding SubmitCommand}" Text="Done!"  />
                 <Button Command="{Binding GoToLogInCommand}" Text="Already Have An Account? Tap Here To Log In!"/>
             </StackLayout>
         </StackLayout>

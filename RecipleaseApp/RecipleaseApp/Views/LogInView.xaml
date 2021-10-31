@@ -7,7 +7,7 @@
             <Frame  >
                 <StackLayout>
 
-                    <Image Source="images//logo.png" />
+                    <Image Source="logo.png" />
                     <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Enter Email" FontFamily=""  
                            Keyboard="Email"  />
 

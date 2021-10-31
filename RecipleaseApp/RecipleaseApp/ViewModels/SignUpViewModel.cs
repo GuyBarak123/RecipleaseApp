@@ -15,13 +15,17 @@ namespace RecipleaseApp.ViewModels
     class SignUpViewModel:INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public static class ERROR_MESSAGES
         {
             public const string REQUIRED_FIELD = "This is a required field";
             public const string BAD_EMAIL = "Invalid email";
             public const string SHORT_PASS = "The password must contain at least 10 characters";
-         
+            public const string BAD_NAME = "Invalid Name";
         }
 
         #region Email
@@ -64,10 +68,7 @@ namespace RecipleaseApp.ViewModels
             }
         }
 
-        private void OnPropertyChanged(string v)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         private void ValidateEmail()
         {
@@ -126,6 +127,7 @@ namespace RecipleaseApp.ViewModels
         private void ValidateName()
         {
             this.ShowNameError = string.IsNullOrEmpty(Name);
+            this.NameError = ERROR_MESSAGES.BAD_NAME;
         }
 
 
@@ -194,33 +196,44 @@ namespace RecipleaseApp.ViewModels
 
             set
             {
-                gender = value;
-                OnPropertyChanged("SelectedGender");
+                if (gender != value)
+                {
+
+                    gender = value;
+                    OnPropertyChanged("SelectedGender");
+                }
             }
         }
 
-        public List<Gender> Genders
-        {
-            get
-            {
-                App app = (App)App.Current;
-                return app.Genders;
-            }
-        }
+        
 
         #endregion
 
         #region Tag
-        private int tag;
-        public int Tag
+        private Tag tag;
+        public Tag SelectedTag
         {
             get { return tag; }
             set
             {
                 tag = value;
-                OnPropertyChanged("Tag");
+               // OnPropertyChanged("Tag");
             }
         }
+
+        #endregion
+        #region Tags
+
+
+        public List<Tag> Tags
+        {
+            get
+            {
+                App app = (App)App.Current;
+                return app.Lookups.Tags;
+            }
+        }
+
 
         #endregion
 
@@ -229,6 +242,20 @@ namespace RecipleaseApp.ViewModels
 
         #endregion
 
+        #region Genders
+
+
+        public List<Gender> Genders
+        {
+            get 
+            {
+                App app = (App)App.Current;
+                return app.Lookups.Genders;
+            }
+         }
+
+  
+        #endregion
 
         //submit command
         public ICommand SubmitCommand => new Command(OnSubmit);
@@ -240,20 +267,22 @@ namespace RecipleaseApp.ViewModels
                 Email = this.email,
                 Name = this.name,
                 Password = this.password,
-                GenderId = this.gender,
-                TagId=this.tag
+                GenderId = this.SelectedGender.GenderId,
+                TagId=this.SelectedTag.TagId
             };
 
-            User u = await proxy.SignUpAsync(use.Email, use.Password, use.Name, use.GenderId, use.TagId) 
+            User u = await proxy.SignUpAsync(use);
             if (u == null)
             {
+                await App.Current.MainPage.DisplayAlert("Ok", "Something Happened! Sign Up Did Not Work ", "Error");
                 Console.WriteLine("Something Happened! Sign Up Did Not Work ");
             }
             else
             {
                 App app = (App)App.Current;
-                app.TheUser = use;
+                app.TheUser = u;
                 Console.WriteLine("Thank You For Signing Up Tp Reciplease!");
+                await App.Current.MainPage.DisplayAlert("Ok", "Great, the user was registered", "Success");
                 // page p=new HomePage();
                 //app.MainPage= new NavigationPage(p);
             }

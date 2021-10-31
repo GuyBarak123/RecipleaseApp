@@ -4,6 +4,7 @@ using Xamarin.Forms.Xaml;
 using RecipleaseApp.Views;
 using RecipleaseApp.Models;
 using System.Collections.Generic;
+using RecipleaseApp.Services;
 
 namespace RecipleaseApp
 {
@@ -19,22 +20,33 @@ namespace RecipleaseApp
         }
 
         public  User TheUser { get; set; }
-        public List<Gender> Genders { get; set; }
         
+        
+        public List<Tag> Tags { get; set; }
+
+        public LookupTables Lookups { get; set; }
         public App()
         {
             InitializeComponent();
-            Genders = new List<Gender>();
-            Genders.Add(new Gender()
+            Lookups = new LookupTables()
             {
-                GenderId = 1,
-                GenderName = "male"
-            });
+                Genders = new List<Gender>(),
+                Tags = new List<Tag>(),
+                Ingridients = new List<Ingridient>()
+            };
+            
+          
+           
             MainPage = new LogInView();
+
+            
         }
 
-        protected override void OnStart()
+
+        protected async override void OnStart()
         {
+            RecipleaseAPIProxy proxy = RecipleaseAPIProxy.CreateProxy();
+            this.Lookups = await proxy.GetLookupsAsync();
         }
 
         protected override void OnSleep()

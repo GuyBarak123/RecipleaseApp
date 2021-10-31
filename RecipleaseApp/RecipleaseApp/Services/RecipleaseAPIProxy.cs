@@ -103,6 +103,34 @@ namespace RecipleaseApp.Services
             }
         }
 
+        public async Task<LookupTables> GetLookupsAsync()
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetLookups");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    LookupTables tbl = JsonSerializer.Deserialize<LookupTables>(content, options);
+                    return tbl;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
         public async Task<User> LoginAsync(string email, string pass)
         {
             try
@@ -131,21 +159,24 @@ namespace RecipleaseApp.Services
                 return null;
             }
         }
-        public async Task<User> SignUpAsync(string email, string password, string name, int gender, int tag)
+        public async Task<User> SignUpAsync(User u)
         {
             try
             {
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/SignUp?email={email}&name={name}&password={password}&gender={gender}&tag={tag}" );
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<User>(u, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/SignUp", content);
                 if (response.IsSuccessStatusCode)
                 {
-                    JsonSerializerOptions options = new JsonSerializerOptions
-                    {
-                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
-                        PropertyNameCaseInsensitive = true
-                    };
-                    string content = await response.Content.ReadAsStringAsync();
-                    User u = JsonSerializer.Deserialize<User>(content, options);
-                    return u;
+                    
+                    jsonObject = await response.Content.ReadAsStringAsync();
+                    User updatedUser = JsonSerializer.Deserialize<User>(jsonObject, options);
+                    return updatedUser;
                 }
                 else
                 {

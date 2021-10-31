@@ -10,7 +10,6 @@ namespace RecipleaseApp.Models
         public Gender()
         {
         }
-
         public int GenderId { get; set; }
         public string GenderName { get; set; }
 
