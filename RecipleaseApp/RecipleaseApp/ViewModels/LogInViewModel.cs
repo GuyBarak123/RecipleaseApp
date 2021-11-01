@@ -64,7 +64,7 @@ namespace RecipleaseApp.ViewModels
             User u = await proxy.LoginAsync(Email, Password);
             if (u == null)
             {
-
+                await App.Current.MainPage.DisplayAlert("Error", "Something Happened! Sign Up Did Not Work ", "Ok");
             }
             else
             {

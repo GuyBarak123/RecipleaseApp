@@ -13,13 +13,15 @@
                         <Image Source="logo.png" />
                         <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Enter Email" FontFamily=""  
                            Keyboard="Email"  />
-
+                        <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" />
                         <Entry x:Name="Password" Text="{Binding Password}" Placeholder="Enter Password" 
                           />
+                        <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" />
                         <Entry x:Name="Name" Text="{Binding Name}" Placeholder="Enter Name"/>
                         <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" />
                         <Label Text="Gender" />
                         <Picker Title="Pick Gender" ItemsSource="{Binding Genders}" ItemDisplayBinding="{Binding GenderName}" SelectedItem="{Binding SelectedGender}"/>
+                      
                         <Label Text="Tag" />
                         <Picker Title="Pick Your Favorite" ItemsSource="{Binding Tags}" ItemDisplayBinding="{Binding TagName}" SelectedItem="{Binding SelectedTag}"/>
 

@@ -26,6 +26,7 @@ namespace RecipleaseApp.ViewModels
             public const string BAD_EMAIL = "Invalid email";
             public const string SHORT_PASS = "The password must contain at least 10 characters";
             public const string BAD_NAME = "Invalid Name";
+
         }
 
         #region Email
@@ -204,8 +205,52 @@ namespace RecipleaseApp.ViewModels
                 }
             }
         }
-
         
+
+        //private bool showGenderError;
+
+        //public bool ShowGenderError
+        //{
+        //    get { return showGenderError; }
+        //    set
+        //    {
+        //        showGenderError = value;
+        //        OnPropertyChanged("ShowGenderError");
+        //    }
+        //}
+
+        //private string genderr;
+
+        //public string Genderr
+        //{
+        //    get { return genderr; }
+        //    set
+        //    {
+        //        name = value;
+        //        ValidateGenderr();
+        //        OnPropertyChanged("Genderr");
+        //    }
+        //}
+
+        //private string genderError;
+
+        //public string GenderError
+        //{
+        //    get { return genderError; }
+        //    set
+        //    {
+        //        genderError = value;
+        //        OnPropertyChanged("gendrError");
+        //    }
+        //}
+
+        //private void ValidateGenderr()
+        //{
+        //    this.ShowNameError = string.IsNullOrEmpty(Name);
+        //    this.NameError = ERROR_MESSAGES.REQUIRED_FIELD;
+        //}
+
+
 
         #endregion
 
@@ -274,7 +319,7 @@ namespace RecipleaseApp.ViewModels
             User u = await proxy.SignUpAsync(use);
             if (u == null)
             {
-                await App.Current.MainPage.DisplayAlert("Ok", "Something Happened! Sign Up Did Not Work ", "Error");
+                await App.Current.MainPage.DisplayAlert("Error", "Something Happened! Sign Up Did Not Work ", "Ok");
                 Console.WriteLine("Something Happened! Sign Up Did Not Work ");
             }
             else

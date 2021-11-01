@@ -3,16 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RecipleaseApp.Views.LogInView">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="CornflowerBlue">
+
+        <StackLayout BackgroundColor="#CCCBF6">
             <Frame  >
                 <StackLayout>
 
                     <Image Source="logo.png" />
-                    <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Enter Email" FontFamily=""  
-                           Keyboard="Email"  />
+                    <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Enter Email" Keyboard="Email"  />
 
-                    <Entry x:Name="Password" Text="{Binding Password}" Placeholder="Enter Password" 
-                          />
+                    <Entry x:Name="Password" Text="{Binding Password}" Placeholder="Enter Password" />
                     <Label Text="{Binding ErrorMes}"/>
                 </StackLayout>
             </Frame>
