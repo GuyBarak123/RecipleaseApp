@@ -262,7 +262,8 @@ namespace RecipleaseApp.ViewModels
             set
             {
                 tag = value;
-               // OnPropertyChanged("Tag");
+                
+               OnPropertyChanged("Tag");
             }
         }
 

@@ -24,7 +24,7 @@
                       
                         <Label Text="Tag" />
                         <Picker Title="Pick Your Favorite" ItemsSource="{Binding Tags}" ItemDisplayBinding="{Binding TagName}" SelectedItem="{Binding SelectedTag}"/>
-
+                        <Label Text="{Binding TagError}" IsVisible="{Binding ShowTagError}" />
 
 
                     </StackLayout>
