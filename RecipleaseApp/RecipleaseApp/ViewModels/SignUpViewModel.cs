@@ -205,56 +205,79 @@ namespace RecipleaseApp.ViewModels
                 }
             }
         }
-        
 
-        //private bool showGenderError;
 
-        //public bool ShowGenderError
-        //{
-        //    get { return showGenderError; }
-        //    set
-        //    {
-        //        showGenderError = value;
-        //        OnPropertyChanged("ShowGenderError");
-        //    }
-        //}
+        private bool showGenderError;
 
-        //private string genderr;
+        public bool ShowGenderError
+        {
+            get { return showGenderError; }
+            set
+            {
+                showGenderError = value;
+                OnPropertyChanged("ShowGenderError");
+            }
+        }
 
-        //public string Genderr
-        //{
-        //    get { return genderr; }
-        //    set
-        //    {
-        //        name = value;
-        //        ValidateGenderr();
-        //        OnPropertyChanged("Genderr");
-        //    }
-        //}
+        private string genderr;
 
-        //private string genderError;
+        public string Genderr
+        {
+            get { return genderr; }
+            set
+            {
+                name = value;
+                ValidateGenderr();
+                OnPropertyChanged("Genderr");
+            }
+        }
 
-        //public string GenderError
-        //{
-        //    get { return genderError; }
-        //    set
-        //    {
-        //        genderError = value;
-        //        OnPropertyChanged("gendrError");
-        //    }
-        //}
+        private string genderError;
 
-        //private void ValidateGenderr()
-        //{
-        //    this.ShowNameError = string.IsNullOrEmpty(Name);
-        //    this.NameError = ERROR_MESSAGES.REQUIRED_FIELD;
-        //}
+        public string GenderError
+        {
+            get { return genderError; }
+            set
+            {
+                genderError = value;
+                OnPropertyChanged("gendrError");
+            }
+        }
+
+        private void ValidateGenderr()
+        {
+            this.ShowNameError = string.IsNullOrEmpty(Name);
+            this.NameError = ERROR_MESSAGES.REQUIRED_FIELD;
+        }
 
 
 
         #endregion
 
         #region Tag
+        //private Tag tag;
+        //public Tag SelectedTag
+        //{
+        //    get { return tag; }
+        //    set
+        //    {
+        //        tag = value;
+                
+        //       OnPropertyChanged("Tag");
+        //    }
+        //}
+        private bool showTagError;
+
+        public bool ShowTagError
+        {
+            get { return showGenderError; }
+            set
+            {
+                showGenderError = false; 
+                OnPropertyChanged("ShowGenderError");
+            }
+        }
+
         private Tag tag;
         public Tag SelectedTag
         {
@@ -262,11 +285,28 @@ namespace RecipleaseApp.ViewModels
             set
             {
                 tag = value;
-                
-               OnPropertyChanged("Tag");
+                ValidateTag();
+                OnPropertyChanged("Tag");
             }
         }
 
+        private string TagError;
+
+        public string TagErrorr
+        {
+            get { return genderError; }
+            set
+            {
+                genderError = value;
+                OnPropertyChanged("gendrError");
+            }
+        }
+
+        private void ValidateTag()
+        {
+            //this.ShowTagError = Tag.IsNullOrEmpty(tag);
+            this.TagErrorr = ERROR_MESSAGES.REQUIRED_FIELD;
+        }
         #endregion
         #region Tags
 
