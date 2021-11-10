@@ -4,6 +4,59 @@
              x:Class="RecipleaseApp.Views.LogInView">
     <ContentPage.Content>
 
+
+
+
+
+        <Grid Style="{StaticResource logInG}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300"></RowDefinition>
+                <!--Image-->
+                <RowDefinition></RowDefinition>
+                <!--Div-->
+            </Grid.RowDefinitions>
+            <Image Source="logo.png" />
+            <!--Image-->
+            <Frame Grid.Row="1" Style="{StaticResource logInSignUp}">
+                <!--Div/Box-->
+                <Grid Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Text="Welcome To Reciplease!" Style="{StaticResource title}"/>
+                    <!--Title-->
+                    <Entry x:Name="Email" Placeholder="User Name" Grid.Row="1" Style="{StaticResource entry}" Text="{Binding Email}"/>
+                    <!--UserName-->
+                    <Entry x:Name="Password" Placeholder="Password" Grid.Row="2" Style="{StaticResource entry}" Text="{Binding Password}" Focused="Password_Focused"/>
+                    <!--Password-->
+                    <Label Grid.Row="3">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Don't Have An Account? " Style="{StaticResource linkPartA}" ></Span>
+                                <Span Text="Sign Up" Style="{StaticResource linkPartB}">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GoToSignUpCommand}"></TapGestureRecognizer>
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    
+                    <Button Text="Log In" Grid.Row="4" Command="{Binding SubmitCommand}"/>
+                    <!--LogIn Button-->
+                </Grid>
+            </Frame>
+        </Grid>
+
+
+
+
+
+        <!-->
         <StackLayout BackgroundColor="#CCCBF6">
             <Frame  >
                 <StackLayout>
@@ -18,5 +71,6 @@
             <Button Command="{Binding SubmitCommand}" Text="Login"  />
             <Button Command="{Binding GoToSignUpCommand}" Text="New Here? Sign Up!"/>
         </StackLayout>
+        <!-->
     </ContentPage.Content>
 </ContentPage>

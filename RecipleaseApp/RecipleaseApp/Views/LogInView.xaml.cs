@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using RecipleaseApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using RecipleaseApp.ViewModels;
 
 namespace RecipleaseApp.Views
 {
@@ -17,6 +18,11 @@ namespace RecipleaseApp.Views
             LogInViewModel context = new LogInViewModel();
             this.BindingContext = context;
             InitializeComponent();
+        }
+        private void Password_Focused(object sender, FocusEventArgs e)
+        {
+            Entry entry = (Entry)sender;
+            entry.IsPassword = true;
         }
     }
 }

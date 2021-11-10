@@ -51,7 +51,7 @@ namespace RecipleaseApp.ViewModels
             set
             {
                 email = value;
-
+                ValidateEmail();
 
                 PropertyChanged(this, new PropertyChangedEventArgs("Email"));
             }
