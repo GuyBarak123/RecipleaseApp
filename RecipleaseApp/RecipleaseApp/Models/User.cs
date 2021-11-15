@@ -13,6 +13,6 @@ namespace RecipleaseApp.Models
         public int? GenderId { get; set; }
         public int? TagId { get; set; }
         public bool IsAdmin { get; set; }
-
+        public virtual ICollection<Recipe> Recipes { get; set; }
     }
 }
