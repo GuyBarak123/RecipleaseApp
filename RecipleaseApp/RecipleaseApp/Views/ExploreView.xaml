@@ -3,8 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RecipleaseApp.Views.ExploreView">
     <ContentPage.Content>
-        <StackLayout>
-          
+        <StackLayout BackgroundColor="White">
+            <SearchBar x:Name="searchBar" 
+                       Placeholder="Type a Search Term" 
+                       Text="{Binding SearchTerm}"
+                       />
+            <RefreshView x:Name="refreshView"
+             Command="{Binding RefreshCommand}"
+             IsRefreshing="{Binding IsRefreshing}">
+                <CollectionView EmptyView="No Recipes" x:Name="collectionName" 
+                                ItemsSource="{Binding FilteredRecipes}" SelectionMode="Single" BackgroundColor="White"
+                          SelectionChangedCommand="{Binding SelctionChanged}"
+                        SelectionChangedCommandParameter="{Binding Source={x:Reference collectionName}, Path=SelectedItem}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Span="1" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                  
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+           
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

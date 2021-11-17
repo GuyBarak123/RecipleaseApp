@@ -132,6 +132,36 @@ namespace RecipleaseApp.ViewModels
             InitRecipes();
         }
         #endregion
+        #region selected recipe
+        //Selection changed 
+        public ICommand SelctionChanged => new Command<Object>(OnSelectionChanged);
+        public void OnSelectionChanged(Object obj)
+        {
+            if (obj is Recipe)
+            {
+                Recipe chosenRecipe = (Recipe)obj;
+                Page recipePage = new ShowRecipeView();
+                ShowRecipeViewModel monkeyContext = new ShowRecipeViewModel
+                {
+                    Title = chosenRecipe.Title,
+                    RecipeDescription=chosenRecipe.RecipeDescription,
+                    Instructions=chosenRecipe.Instructions,
+                    // Ingredients=chosenRecipe.
+                    // FrontImageUrl=chosenRecipe.fron
+                    //Tag = chosenRecipe.Tag,
+                    //LastImageUrl=chosenRecipe.
+                    // Time=chosenRecipe.
+
+
+                };
+               
+                //    monkeyPage.BindingContext = monkeyContext;
+                //    monkeyPage.Title = monkeyContext.Name;
+                //    if (NavigateToPageEvent != null)
+                //        NavigateToPageEvent(monkeyPage);
+            }
+        }
+        #endregion
         #region Delete Contact
         //public ICommand DeleteContact => new Command<UserContact>(OnDeleteContact);
         //public async void OnDeleteContact(UserContact uc)
@@ -148,7 +178,7 @@ namespace RecipleaseApp.ViewModels
         //        await App.Current.MainPage.DisplayAlert("שגיאה", "שגיאה במחיקת איש קשר", "בסדר", FlowDirection.RightToLeft);
         //    }
         //}
-       #endregion
+        #endregion
         #region Add New Contact
         //public ICommand AddContact => new Command(OnAddContact);
         //public async void OnAddContact()

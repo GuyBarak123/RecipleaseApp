@@ -71,7 +71,7 @@ namespace RecipleaseApp.ViewModels
                 App app = (App) App.Current;
                 app.TheUser = u;
                 //Move to next screen
-                app.MainPage = new SIgnUpView();
+                app.MainPage = new ExploreView();
             }
         }
 

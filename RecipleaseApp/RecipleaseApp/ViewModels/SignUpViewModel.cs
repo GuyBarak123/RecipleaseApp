@@ -369,8 +369,8 @@ namespace RecipleaseApp.ViewModels
                 app.TheUser = u;
                 Console.WriteLine("Thank You For Signing Up Tp Reciplease!");
                 await App.Current.MainPage.DisplayAlert("Ok", "Great, the user was registered", "Success");
-                // page p=new HomePage();
-                //app.MainPage= new NavigationPage(p);
+                Page p = new LogInView();
+                App.Current.MainPage = p;
             }
         }
 
