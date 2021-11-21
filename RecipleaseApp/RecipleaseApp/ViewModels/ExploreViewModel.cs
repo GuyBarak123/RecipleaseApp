@@ -97,8 +97,9 @@ namespace RecipleaseApp.ViewModels
             {
                 foreach (Recipe R in this.allRecipes)
                 {
-                    string RecipeString = $"{R.Title}|{R.User}";
-                  
+                    string RecipeString = $"{R.Title}|{R.User}|{R.Title.IndexOf(searchTerm)}";
+
+
 
                     if (!this.FilteredRecipes.Contains(R) &&
                        RecipeString.Contains(search))

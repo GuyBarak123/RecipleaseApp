@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using RecipleaseApp.ViewModels;
 
 namespace RecipleaseApp.Views
 {
@@ -14,6 +15,8 @@ namespace RecipleaseApp.Views
     {
         public ExploreView()
         {
+            ExploreViewModel vm = new ExploreViewModel();
+            this.BindingContext = vm;
             InitializeComponent();
         }
     }
