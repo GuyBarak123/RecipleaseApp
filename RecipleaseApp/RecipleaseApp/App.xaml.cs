@@ -5,6 +5,7 @@ using RecipleaseApp.Views;
 using RecipleaseApp.Models;
 using System.Collections.Generic;
 using RecipleaseApp.Services;
+using RecipleaseApp.Views.Trying.DashBoard;
 
 namespace RecipleaseApp
 {
@@ -34,10 +35,12 @@ namespace RecipleaseApp
                 Tags = new List<Tag>(),
                 Ingridients = new List<Ingridient>()
             };
-            
-          
-           
-            MainPage = new LogInView();
+
+
+
+            //
+            //MainPage = new LogInView();
+            MainPage = new NavigationPage(new DashBoard_ContentPage());
 
             
         }
