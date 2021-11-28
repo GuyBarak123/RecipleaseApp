@@ -142,7 +142,7 @@ namespace RecipleaseApp.ViewModels
             {
                 Recipe chosenRecipe = (Recipe)obj;
                 Page recipePage = new ShowRecipeView();
-                ShowRecipeViewModel monkeyContext = new ShowRecipeViewModel
+                ShowRecipeViewModel recipeContext = new ShowRecipeViewModel
                 {
                     Title = chosenRecipe.Title,
                     RecipeDescription=chosenRecipe.RecipeDescription,
@@ -155,13 +155,18 @@ namespace RecipleaseApp.ViewModels
 
 
                 };
-               
-                //    monkeyPage.BindingContext = monkeyContext;
-                //    monkeyPage.Title = monkeyContext.Name;
-                //    if (NavigateToPageEvent != null)
-                //        NavigateToPageEvent(monkeyPage);
+                recipePage.BindingContext = recipeContext;
+                recipePage.Title = recipeContext.Title;
+                NavigateToPageEvent(recipePage);
+                    
+              
             }
         }
+        #region Events
+        //Events
+        //This event is used to navigate to the monkey page
+        public Action<Page> NavigateToPageEvent;
+        #endregion
         #endregion
         #region Delete Contact
         //public ICommand DeleteContact => new Command<UserContact>(OnDeleteContact);
@@ -225,6 +230,7 @@ namespace RecipleaseApp.ViewModels
         //public event Action ClearSelection;
         #endregion
     }
+
 
 
 }

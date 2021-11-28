@@ -4,9 +4,18 @@
              x:Class="RecipleaseApp.Views.ShowRecipeView">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding Title}" HorizontalTextAlignment="Center" FontSize="Large"/>
+            <Image Source="{Binding FrontImageUrl}" WidthRequest="400" HeightRequest="400"/>
+            <Label Text="{Binding RecipeDescription }" HorizontalTextAlignment="Center" FontSize="Caption"/>
+            <Label Text="{Binding Instructions}" HorizontalTextAlignment="Center" FontSize="Body"/>
+            <Label Text="{Binding Ingredients}" HorizontalTextAlignment="Center" FontSize="Body"/>
+          
+            <Label Text="{Binding Tag }" HorizontalTextAlignment="Center" FontSize="Body"/>
+            
+
+
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
