@@ -76,7 +76,7 @@ namespace RecipleaseApp.ViewModels
 
         }
 
-        //comands
+        //commands
         #region Search
         public void OnTextChanged(string search)
         {
@@ -145,13 +145,13 @@ namespace RecipleaseApp.ViewModels
                 ShowRecipeViewModel recipeContext = new ShowRecipeViewModel
                 {
                     Title = chosenRecipe.Title,
-                    RecipeDescription=chosenRecipe.RecipeDescription,
-                    Instructions=chosenRecipe.Instructions,
-                    // Ingredients=chosenRecipe.
-                    // FrontImageUrl=chosenRecipe.fron
-                    //Tag = chosenRecipe.Tag,
-                    //LastImageUrl=chosenRecipe.
-                    // Time=chosenRecipe.
+                    RecipeDescription = chosenRecipe.RecipeDescription,
+                    Instructions = chosenRecipe.Instructions,
+                    Ingredients = chosenRecipe.RecipeIngs,
+                    //FrontImageUrl = chosenRecipe.
+                    Tag = chosenRecipe.Tag,
+                    // LastImageUrl = chosenRecipe,
+                    Time = chosenRecipe.DateOfUpload
 
 
                 };

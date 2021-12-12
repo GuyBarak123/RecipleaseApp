@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using RecipleaseApp.Models;
 
 namespace RecipleaseApp.ViewModels
 {
@@ -13,11 +14,11 @@ namespace RecipleaseApp.ViewModels
         public string Title { get; set; }
         public string RecipeDescription { get; set; }
         public string Instructions { get; set; }
-        public string Ingredients { get; set; }
+        public List<RecipeIng> Ingredients { get; set; }
         public string FrontImageUrl { get; set; }
-        public string Tag { get; set; }
+        public Tag Tag { get; set; }
         public string LastImageUrl { get; set; }
-        public DateTime Time { get; set; }
+        public DateTime? Time { get; set; }
 
 
 

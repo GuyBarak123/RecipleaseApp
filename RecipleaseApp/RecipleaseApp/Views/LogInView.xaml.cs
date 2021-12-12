@@ -16,6 +16,7 @@ namespace RecipleaseApp.Views
         public LogInView()
         {
             LogInViewModel context = new LogInViewModel();
+            context.NavigateToPageEvent += (p) => Navigation.PushAsync(p);
             this.BindingContext = context;
             InitializeComponent();
         }

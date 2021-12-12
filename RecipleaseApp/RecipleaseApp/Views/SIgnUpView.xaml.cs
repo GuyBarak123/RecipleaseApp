@@ -15,7 +15,9 @@ namespace RecipleaseApp.Views
     {
         public SIgnUpView()
         {
-            this.BindingContext = new SignUpViewModel();
+            SignUpViewModel context = new SignUpViewModel();
+            context.NavigateToPageEvent += (p) => Navigation.PushAsync(p);
+            this.BindingContext = context;
             InitializeComponent();
         }
     }

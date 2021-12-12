@@ -340,8 +340,9 @@ namespace RecipleaseApp.ViewModels
             }
          }
 
-  
+
         #endregion
+        public Action<Page> NavigateToPageEvent;
 
         //submit command
         public ICommand SubmitCommand => new Command(OnSubmit);

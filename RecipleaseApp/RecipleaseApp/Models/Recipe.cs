@@ -23,8 +23,8 @@ namespace RecipleaseApp.Models
 
         public virtual Tag Tag { get; set; }
         public virtual User User { get; set; }
-        //public virtual ICollection<Comment> Comments { get; set; }
-        //public virtual ICollection<Like> Likes { get; set; }
-        //public virtual ICollection<RecipeIng> RecipeIngs { get; set; }
+        public virtual List<Comment> Comments { get; set; }
+        public virtual List<Like> Likes { get; set; }
+        public virtual List<RecipeIng> RecipeIngs { get; set; }
     }
 }

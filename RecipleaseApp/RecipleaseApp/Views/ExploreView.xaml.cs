@@ -19,9 +19,6 @@ namespace RecipleaseApp.Views
             //Register to the event so the view model will be able to navigate to the monkeypage
             context.NavigateToPageEvent += (p) => Navigation.PushAsync(p);
             this.BindingContext = context;
-
-            ExploreViewModel vm = new ExploreViewModel();
-            this.BindingContext = vm;
             InitializeComponent();
         }
         

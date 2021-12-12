@@ -15,7 +15,7 @@ namespace RecipleaseApp.ViewModels
     { 
     
         public event PropertyChangedEventHandler PropertyChanged;
-
+        public Action<Page> NavigateToPageEvent;
         //Email
         private string email;
         public string Email
@@ -71,7 +71,7 @@ namespace RecipleaseApp.ViewModels
                 App app = (App) App.Current;
                 app.TheUser = u;
                 //Move to next screen
-                app.MainPage = new ExploreView();
+                NavigateToPageEvent(new ExploreView());
             }
         }
 

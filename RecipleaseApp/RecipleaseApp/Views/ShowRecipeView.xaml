@@ -9,6 +9,15 @@
             <Label Text="{Binding RecipeDescription }" HorizontalTextAlignment="Center" FontSize="Caption"/>
             <Label Text="{Binding Instructions}" HorizontalTextAlignment="Center" FontSize="Body"/>
             <Label Text="{Binding Ingredients}" HorizontalTextAlignment="Center" FontSize="Body"/>
+
+            <CollectionView ItemsSource="{Binding Ingredients}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        
+                        <Label Text="{Binding Ingridient.IngridientName}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
           
             <Label Text="{Binding Tag }" HorizontalTextAlignment="Center" FontSize="Body"/>
             

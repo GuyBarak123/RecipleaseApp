@@ -39,7 +39,7 @@ namespace RecipleaseApp
 
 
             //
-            MainPage = new LogInView();
+            MainPage = new NavigationPage(new LogInView());
             //MainPage = new NavigationPage(new DashBoard_ContentPage());
 
             
