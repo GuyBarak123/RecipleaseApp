@@ -39,9 +39,12 @@ namespace RecipleaseApp
 
 
             //
-            MainPage = new NavigationPage(new LogInView());
-            //MainPage = new NavigationPage(new DashBoard_ContentPage());
-
+            MainPage = new NavigationPage(new LogInView())
+            {
+                //MainPage = new NavigationPage(new DashBoard_ContentPage());
+                BarBackgroundColor = Color.FromHex("#ff5300"),
+                BarTextColor = Color.White
+            };
             
         }
 

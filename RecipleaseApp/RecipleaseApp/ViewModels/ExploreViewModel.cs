@@ -152,14 +152,17 @@ namespace RecipleaseApp.ViewModels
                     Tag = chosenRecipe.Tag,
                     // LastImageUrl = chosenRecipe,
                     Time = chosenRecipe.DateOfUpload
+                 
 
 
                 };
                 recipePage.BindingContext = recipeContext;
                 recipePage.Title = recipeContext.Title;
                 NavigateToPageEvent(recipePage);
-                    
-              
+               // OnRefresh();
+
+
+
             }
         }
         #region Events

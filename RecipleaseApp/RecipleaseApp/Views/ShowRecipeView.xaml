@@ -21,6 +21,11 @@
           
             <Label Text="{Binding Tag }" HorizontalTextAlignment="Center" FontSize="Body"/>
             
+            
+            
+            
+            
+            
 
 
 
