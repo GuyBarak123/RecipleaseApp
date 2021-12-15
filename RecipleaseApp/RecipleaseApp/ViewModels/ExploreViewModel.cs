@@ -58,6 +58,24 @@ namespace RecipleaseApp.ViewModels
             }
         }
 
+        private Recipe selectedRecipe;
+        public Recipe SelectedRecipe
+        {
+            get
+            {
+                return this.selectedRecipe;
+            }
+            set
+            {
+                if (this.selectedRecipe != value)
+                {
+                    this.selectedRecipe = value;
+                    OnPropertyChanged("SelectedRecipe");
+
+                }
+            }
+        }
+
         public ExploreViewModel()
         {
             this.SearchTerm = string.Empty;
@@ -159,11 +177,14 @@ namespace RecipleaseApp.ViewModels
                 recipePage.BindingContext = recipeContext;
                 recipePage.Title = recipeContext.Title;
                 NavigateToPageEvent(recipePage);
+                SelectedRecipe = null;
                // OnRefresh();
 
 
 
             }
+
+             
         }
         #region Events
         //Events

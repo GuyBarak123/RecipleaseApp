@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:xct="http://xamarin.com/schemas/2020/toolkit" xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              NavigationPage.HasNavigationBar="False"
              x:Class="RecipleaseApp.Views.ExploreView">
 
     <ContentPage.Content>
+        
         <StackLayout BackgroundColor="White">
             <SearchBar x:Name="searchBar" 
                        Placeholder="Type a Search Term" 
@@ -16,7 +18,8 @@
                 <CollectionView EmptyView="No Recipes" x:Name="collectionName" 
                                 ItemsSource="{Binding FilteredRecipes}" SelectionMode="Single" BackgroundColor="White"
                           SelectionChangedCommand="{Binding SelctionChanged}"
-                        SelectionChangedCommandParameter="{Binding Source={x:Reference collectionName}, Path=SelectedItem}">
+                        SelectionChangedCommandParameter="{Binding Source={x:Reference collectionName}, Path=SelectedItem}"
+                                SelectedItem="{Binding SelectedRecipe}">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Span="1" Orientation="Vertical" />
                     </CollectionView.ItemsLayout>
@@ -40,7 +43,52 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </RefreshView>
-           
+            <xct:TabView TabStripPlacement="Bottom" TabStripHeight="50">
+                <xct:TabViewItem Text="Explore" BackgroundColor="#BFB5AF" TextColor="White" TextColorSelected="Black" BadgeTextColor="White" Icon="SearchBar.png" >
+                 
+                    <xct:TabViewItem.Content>
+                        <StackLayout>
+                            <Frame BackgroundColor="#BFB5AF" Padding="24" CornerRadius="0">
+                                <Label Text="TabView Sample" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                            </Frame>
+                            <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
+                            <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
+                            <Label FontSize="16" Padding="30,24,30,0">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span Text="Learn more at "/>
+                                            <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </xct:TabViewItem.Content>
+                </xct:TabViewItem>
+                <xct:TabViewItem Text="profile" TextColor="White" BackgroundColor="#D5B9B2" TextColorSelected="Black" BadgeText="Hello" Icon="triangle.png">
+                    <xct:TabViewItem.Content>
+                        <StackLayout>
+                            <Frame BackgroundColor="#D5B9B2" Padding="24" CornerRadius="0">
+                                <Label Text="TabView Sample" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                            </Frame>
+                            <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
+                            <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
+                            <Label FontSize="16" Padding="30,24,30,0">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span Text="Learn more at "/>
+                                            <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </xct:TabViewItem.Content>
+                </xct:TabViewItem>
+            </xct:TabView>
+
         </StackLayout>
        
     </ContentPage.Content>

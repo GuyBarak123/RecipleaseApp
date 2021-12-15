@@ -21,7 +21,10 @@ namespace RecipleaseApp.Views
             this.BindingContext = context;
             InitializeComponent();
         }
-        
 
+        private void TabViewItem_SizeChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
