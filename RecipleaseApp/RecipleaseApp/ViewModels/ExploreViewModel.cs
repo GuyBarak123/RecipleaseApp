@@ -253,6 +253,22 @@ namespace RecipleaseApp.ViewModels
 
         //public event Action ClearSelection;
         #endregion
+        #region tabbed bar commands
+        public ICommand GoToNewPostCommand => new Command(OnGoToNewPostSubmit);
+        private async void OnGoToNewPostSubmit()
+        {
+            Page p = new NewPostView();
+            App.Current.MainPage = p;
+
+        }
+        public ICommand GoToProfileCommand => new Command(OnGoToProfileSubmit);
+        private async void OnGoToProfileSubmit()
+        {
+            Page p = new NewPostView();
+            App.Current.MainPage = p;
+
+        }
+        #endregion
     }
 
 
