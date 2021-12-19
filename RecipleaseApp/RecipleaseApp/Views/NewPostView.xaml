@@ -16,26 +16,16 @@
 
                 <xct:TabViewItem Text="Explore" TextColor="White" BackgroundColor="#BFB5AF" TextColorSelected="Black"  Icon="ShouldBeBig.png" TapCommand="{Binding OnGoToExplorePageSubmit}" >
                     <xct:TabViewItem.Content>
+
                         <StackLayout>
                             <Frame BackgroundColor="#BFB5AF" Padding="24" CornerRadius="0">
-                                <Label Text="Explore" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                                <Label Text="Explore Page" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
                             </Frame>
-
                         </StackLayout>
 
                     </xct:TabViewItem.Content>
                 </xct:TabViewItem>
-                <xct:TabViewItem Text="profile" BackgroundColor="#A26769" TextColor="White" TextColorSelected="Black" BadgeTextColor="White" Icon="ProfileIcon.png" FontSize="10"    TapCommand="{Binding GoToProfileCommand}">
-
-                    <xct:TabViewItem.Content>
-                        <StackLayout>
-                            <Frame BackgroundColor="#A26769" Padding="24" CornerRadius="0">
-                                <Label Text="Profile Page" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-                            </Frame>
-
-                        </StackLayout>
-                    </xct:TabViewItem.Content>
-                </xct:TabViewItem>
+               
                 <xct:TabViewItem Text="New Post" BackgroundColor="#D5B9B2" TextColor="White" TextColorSelected="Black"  Icon="RPostIcon.png" FontSize="10" >
 
                     <xct:TabViewItem.Content>
@@ -49,9 +39,19 @@
                 </xct:TabViewItem>
 
 
+                <xct:TabViewItem Text="profile" BackgroundColor="#A26769" TextColor="White" TextColorSelected="Black" BadgeTextColor="White" Icon="ProfileIcon.png" FontSize="10"    TapCommand="{Binding GoToProfileCommand}">
+
+                    <xct:TabViewItem.Content>
+                        <StackLayout>
+                            <Frame BackgroundColor="#A26769" Padding="24" CornerRadius="0">
+                                <Label Text="Profile Page" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                            </Frame>
+
+                        </StackLayout>
+                    </xct:TabViewItem.Content>
+                </xct:TabViewItem>
 
 
-          
             </xct:TabView>
         </StackLayout>
     </ContentPage.Content>
