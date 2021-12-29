@@ -14,7 +14,7 @@
 
                 <xct:TabViewItem Text="Explore" TextColor="White" BackgroundColor="#BFB5AF" TextColorSelected="Black"  Icon="ShouldBeBig.png">
                     <xct:TabViewItem.Content>
-                        <local:View1></local:View1>
+                        <local:ExploreTabView></local:ExploreTabView>
 
                     </xct:TabViewItem.Content>
                 </xct:TabViewItem>
