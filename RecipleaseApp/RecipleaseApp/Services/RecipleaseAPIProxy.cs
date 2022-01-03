@@ -212,5 +212,37 @@ namespace RecipleaseApp.Services
                 return false;
             }
         }
+
+
+        public async Task<bool> RemoveRecipe(Recipe R)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.Hebrew, UnicodeRanges.BasicLatin),
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<Recipe>(R, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/RemoveContact", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine(ee.Message);
+                return false;
+            }
+        }
+
     }
-    }
+}

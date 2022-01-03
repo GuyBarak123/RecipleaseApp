@@ -36,12 +36,7 @@
                 <xct:TabViewItem Text="profile" BackgroundColor="#A26769" TextColor="White" TextColorSelected="Black" BadgeTextColor="White" Icon="ProfileIcon.png" FontSize="10"  TapCommand="{Binding GoToProfileCommand}" >
 
                     <xct:TabViewItem.Content>
-                        <StackLayout>
-                            <Frame BackgroundColor="#A26769" Padding="24" CornerRadius="0">
-                                <Label Text="Profile Page" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-                            </Frame>
-
-                        </StackLayout>
+                        <local:ProfileView></local:ProfileView>
                     </xct:TabViewItem.Content>
                 </xct:TabViewItem>
 

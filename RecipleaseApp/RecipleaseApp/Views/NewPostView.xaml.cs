@@ -6,21 +6,15 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using RecipleaseApp.ViewModels;
 
 namespace RecipleaseApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewPostView : ContentPage
+    public partial class NewPostView : ContentView
     {
         public NewPostView()
         {
-            NewPostViewModel context = new NewPostViewModel();
-            //Register to the event so the view model will be able to navigate to the monkeypage
-            context.NavigateToPageEvent += (p) => Navigation.PushAsync(p);
-            this.BindingContext = context;
             InitializeComponent();
-
         }
     }
 }

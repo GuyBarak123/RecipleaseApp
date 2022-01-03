@@ -14,22 +14,6 @@ namespace RecipleaseApp.ViewModels
 {
     class NewPostViewModel
     {
-        #region tabbed bar commands
-        public Action<Page> NavigateToPageEvent;
-        public ICommand GoToExplorePageCommand => new Command(OnGoToExplorePageSubmit);
-        private async void OnGoToExplorePageSubmit()
-        {
-            Page p = new ExploreView();
-            App.Current.MainPage = p;
-
-        }
-        public ICommand GoToProfileCommand => new Command(OnGoToProfileSubmit);
-        private async void OnGoToProfileSubmit()
-        {
-            Page p = new ProfileView();
-            App.Current.MainPage = p;
-
-        }
-        #endregion
+      
     }
 }

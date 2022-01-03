@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using RecipleaseApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using RecipleaseApp.ViewModels;
 
 namespace RecipleaseApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfileView : ContentPage
+    public partial class ProfileView : ContentView
     {
         public ProfileView()
         {
-            ProfileViewModel context = new ProfileViewModel ();
-            //Register to the event so the view model will be able to navigate to the monkeypage
+            ProfileViewModel context = new ProfileViewModel();
             context.NavigateToPageEvent += (p) => Navigation.PushAsync(p);
             this.BindingContext = context;
             InitializeComponent();

@@ -15,6 +15,7 @@ namespace RecipleaseApp.Views
         public ExploreTabView()
         {
             ExploreViewModel context = new ExploreViewModel();
+            context.NavigateToPageEvent += (p) => Navigation.PushAsync(p);
 
             this.BindingContext = context;
             InitializeComponent();

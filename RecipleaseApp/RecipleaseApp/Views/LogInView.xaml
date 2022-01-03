@@ -30,7 +30,7 @@
                     </Grid.RowDefinitions>
                     <Label Text="Welcome To Reciplease!" Style="{StaticResource title}"/>
                     <!--Title-->
-                    <Entry x:Name="Email" Placeholder="User Name" Grid.Row="1" Style="{StaticResource entry}" Text="{Binding Email}"/>
+                    <Entry x:Name="Email" Placeholder="Email" Grid.Row="1" Style="{StaticResource entry}" Text="{Binding Email}"/>
                     <!--UserName-->
                     <Entry x:Name="Password" Placeholder="Password" Grid.Row="2" Style="{StaticResource entry}" Text="{Binding Password}" Focused="Password_Focused"/>
                     <!--Password-->

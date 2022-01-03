@@ -11,6 +11,7 @@ namespace RecipleaseApp.ViewModels
 {
     class ShowRecipeViewModel : INotifyPropertyChanged
     {
+        public Action<Page> NavigateToPageEvent;
         public string Title { get; set; }
         public string RecipeDescription { get; set; }
         public string Instructions { get; set; }
