@@ -5,11 +5,34 @@
              x:Class="RecipleaseApp.Views.ProfileView">
   <ContentView.Content>
       <StackLayout>
-         
-            
-            <Label Text="{Binding Name}" HorizontalTextAlignment="Start" FontSize="Body"/>
-            <Label Text="{Binding Email}" HorizontalTextAlignment="End" FontSize="Body"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition />
+                    <RowDefinition Height="10" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
            
+                <BoxView Grid.Row="1"
+                 Color="#A26769" />
+                <Label Grid.Row="1" Grid.Column="0"
+               Text="{Binding Name}" HorizontalTextAlignment="Center" FontSize="Body" BackgroundColor="#A26769" />
+                
+                
+                <BoxView Grid.Row="1"
+                 Grid.Column="1"
+                 Color="#A267" />
+                <Label Grid.Row="1" Grid.Column="1"
+                 Text="{Binding Email}" HorizontalTextAlignment="Center" FontSize="Body" />
+                
+               
+            </Grid>
+
+            <Button Text="popup" Clicked="Button_Clicked"/>
             <StackLayout BackgroundColor="White">
                 <SearchBar x:Name="searchBar" 
                        Placeholder="Type a Search Term" 

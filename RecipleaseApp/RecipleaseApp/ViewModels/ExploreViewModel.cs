@@ -236,15 +236,15 @@ namespace RecipleaseApp.ViewModels
         //}
 
         #endregion
-        #region Update Existing Contact
-        //public ICommand UpdateContact => new Command<UserContact>(OnUpdateContact);
-        //public async void OnUpdateContact(UserContact uc)
+        #region Update Existing recipe to do after new post page is done
+        //public ICommand UpdateContact => new Command<Recipe>(OnUpdateContact);
+        //public async void OnUpdateContact(Recipe R)
         //{
-        //    if (uc != null)
+        //    if (R != null)
         //    {
         //        App theApp = (App)App.Current;
-        //        AddContactViewModel vm = new AddContactViewModel(uc);
-        //        vm.ContactUpdatedEvent += OnContactAdded;
+        //      NewPostViewModel NP = new NewPostViewModel(R);
+        //      NP.ContactUpdatedEvent += OnContactAdded;
         //        Page p = new Views.AddContact(vm);
         //        await theApp.MainPage.Navigation.PushAsync(p);
         //        if (ClearSelection != null)
@@ -254,8 +254,8 @@ namespace RecipleaseApp.ViewModels
 
         //public event Action ClearSelection;
         #endregion
-     
-        
+
+
     }
 
 
