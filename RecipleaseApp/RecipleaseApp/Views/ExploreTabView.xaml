@@ -3,50 +3,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 NavigationPage.HasNavigationBar="False"
              x:Class="RecipleaseApp.Views.ExploreTabView">
-  <ContentView.Content>
-     
-            <StackLayout BackgroundColor="White">
+    <ContentView.Content>
 
-
-             
-
-                                <SearchBar x:Name="searchBar" 
+        <StackLayout BackgroundColor="White">
+            <SearchBar x:Name="searchBar" 
                        Placeholder="Type a Search Term" 
                        Text="{Binding SearchTerm}"
                        />
-                                <RefreshView x:Name="refreshView"
+            <RefreshView x:Name="refreshView"
              Command="{Binding RefreshCommand}"
              IsRefreshing="{Binding IsRefreshing}">
-                                    <CollectionView EmptyView="No Recipes" x:Name="collectionName" 
+                <CollectionView EmptyView="No Recipes" x:Name="collectionName" 
                                 ItemsSource="{Binding FilteredRecipes}" SelectionMode="Single" BackgroundColor="White"
                           SelectionChangedCommand="{Binding SelctionChanged}"
                         SelectionChangedCommandParameter="{Binding Source={x:Reference collectionName}, Path=SelectedItem}"
                                 SelectedItem="{Binding SelectedRecipe}">
-                                        <CollectionView.ItemsLayout>
-                                            <GridItemsLayout Span="1" Orientation="Vertical" />
-                                        </CollectionView.ItemsLayout>
-                                        <CollectionView.ItemTemplate>
-                                            <DataTemplate>
-                                                <Grid Margin="7">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="230" />
-                                                        <ColumnDefinition Width="*" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="50"/>
-                                                        <RowDefinition Height="50"/>
-                                                    </Grid.RowDefinitions>
-                                                    <Label Text="{Binding Path=Title, StringFormat='{0}'}"  HorizontalTextAlignment="Start" FontSize="40"  Grid.Row="0" Grid.Column="0" />
-                                                    <Label Text="{Binding Path=RecipeDescription, StringFormat='{0}'}" HorizontalTextAlignment="Start" FontSize="Caption" FontAttributes="Bold" Grid.Row="1" Grid.Column="0" Margin="0,0,5,0"/>
-                                                    <Image Source="{Binding ImgSource}" Grid.Column="1"  Grid.Row="0"/>
-                                                </Grid>
-
-                                            </DataTemplate>
-                                        </CollectionView.ItemTemplate>
-                                    </CollectionView>
-                                </RefreshView>
-                     
-
-            </StackLayout>
-  </ContentView.Content>
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Span="1" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="7">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="230" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding Path=Title, StringFormat='{0}'}"  HorizontalTextAlignment="Start" FontSize="40"  Grid.Row="0" Grid.Column="0" />
+                                <Label Text="{Binding Path=RecipeDescription, StringFormat='{0}'}" HorizontalTextAlignment="Start" FontSize="Caption" FontAttributes="Bold" Grid.Row="1" Grid.Column="0" Margin="0,0,5,0"/>
+                                <Image Source="{Binding ImgSource}" Grid.Column="1"  Grid.Row="0"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentView.Content>
 </ContentView>

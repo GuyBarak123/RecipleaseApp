@@ -11,4 +11,4 @@
         </Frame>
         <Button Text="Close me" Clicked="Button_Clicked" />
     </StackLayout>
-    </xct:Popup>s
+</xct:Popup>
