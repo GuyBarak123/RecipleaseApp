@@ -5,7 +5,7 @@
              x:Class="RecipleaseApp.Views.ExploreTabView">
     <ContentView.Content>
 
-        <StackLayout BackgroundColor="White">
+        <StackLayout BackgroundColor="#E8D6CB">
             <SearchBar x:Name="searchBar" 
                        Placeholder="Type a Search Term" 
                        Text="{Binding SearchTerm}"
