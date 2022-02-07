@@ -244,5 +244,38 @@ namespace RecipleaseApp.Services
             }
         }
 
+
+        public async Task<Recipe> NewPostAsync(Recipe R)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<Recipe>(R, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/SignUp", content);
+                if (response.IsSuccessStatusCode)
+                {
+
+                    jsonObject = await response.Content.ReadAsStringAsync();
+                    User updatedUser = JsonSerializer.Deserialize<User>(jsonObject, options);
+                    return updatedUser;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+
+        }
+
     }
 }
