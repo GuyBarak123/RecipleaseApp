@@ -14,6 +14,8 @@ namespace RecipleaseApp.ViewModels
 {
     class NewPostViewModel
     {
+
+
       
     }
 }

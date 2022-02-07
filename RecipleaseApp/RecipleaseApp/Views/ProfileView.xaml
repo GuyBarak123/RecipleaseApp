@@ -32,7 +32,7 @@
                
             </Grid>
 
-            <Button Text="Measurements"  Clicked="Button_Clicked "/>
+            <Button Text="Measurements" BackgroundColor="#C79B7F" Clicked="Button_Clicked"/>
             <StackLayout BackgroundColor="White">
                 <SearchBar x:Name="searchBar" 
                        Placeholder="Type a Search Term" 
