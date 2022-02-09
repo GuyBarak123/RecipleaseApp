@@ -190,7 +190,7 @@ namespace RecipleaseApp.ViewModels
 
         #endregion
 
-        #region Instructions 
+        #region Instructions
         private bool showInstructionsError;
 
         public bool ShowInstructionsError
@@ -210,7 +210,7 @@ namespace RecipleaseApp.ViewModels
             get { return instructions; }
             set
             {
-                title = value;
+                instructions = value;
                 ValidateInstructions();
                 OnPropertyChanged("Instructions");
             }
@@ -223,15 +223,15 @@ namespace RecipleaseApp.ViewModels
             get { return instructionsError; }
             set
             {
-                titleError = value;
+                instructionsError = value;
                 OnPropertyChanged("InstructionsError");
             }
         }
 
         private void ValidateInstructions()
         {
-            this.ShowTitleError = string.IsNullOrEmpty(Title);
-            this.TitleError = ERROR_MESSAGES.BAD_NAME;
+            this.ShowInstructionsError = string.IsNullOrEmpty(Instructions);
+            this.InstructionsError = ERROR_MESSAGES.BAD_NAME;
         }
 
 
@@ -250,12 +250,12 @@ namespace RecipleaseApp.ViewModels
                 Title=this.title,
                 RecipeDescription=this.recipeDescription,
                 Instructions=this.instructions,
-                Tag=this.tag
+                TagId = this.tag.TagId
             };
 
           
 
-           Recipe R= await proxy.NewPostAsync(recipe);
+            Recipe R= await proxy.NewPostAsync(recipe);
             if (R == null)
             {
                 await App.Current.MainPage.DisplayAlert("Error", "Something Happened! The Post Did Not Upload ", "Ok");
@@ -266,8 +266,9 @@ namespace RecipleaseApp.ViewModels
                 App app = (App)App.Current;
                // app.TheUser = R;
                 Console.WriteLine("Thank You For Signing Up Tp Reciplease!");
-                await App.Current.MainPage.DisplayAlert("Ok", "Great, the user was registered", "Success");
-                //Page p = new ProfileView();
+                await App.Current.MainPage.DisplayAlert("Ok", "Great, The recipe was posted! no need to submit again", "Success");
+
+               // Page p = new ProfileView();
                 //App.Current.MainPage = p;
             }
         }

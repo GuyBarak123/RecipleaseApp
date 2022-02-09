@@ -256,13 +256,13 @@ namespace RecipleaseApp.Services
                 };
                 string jsonObject = JsonSerializer.Serialize<Recipe>(R, options);
                 StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/SignUp", content);
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/NewPost", content);
                 if (response.IsSuccessStatusCode)
                 {
 
                     jsonObject = await response.Content.ReadAsStringAsync();
-                    User updatedUser = JsonSerializer.Deserialize<User>(jsonObject, options);
-                    return updatedUser;
+                    Recipe UpdatedRecipe= JsonSerializer.Deserialize<Recipe>(jsonObject, options);
+                    return UpdatedRecipe;
                 }
                 else
                 {

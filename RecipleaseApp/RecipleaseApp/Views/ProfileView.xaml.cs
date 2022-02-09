@@ -25,5 +25,10 @@ namespace RecipleaseApp.Views
         {
             Navigation.ShowPopup(new PopUp_Weight());
         }
+
+        public static implicit operator Page(ProfileView v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

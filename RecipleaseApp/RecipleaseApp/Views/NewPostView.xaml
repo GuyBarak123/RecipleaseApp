@@ -5,7 +5,31 @@
              x:Class="RecipleaseApp.Views.NewPostView">
   <ContentView.Content>
       <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
+
+            <Label Text="Write And Share Your Recipe With The Rest Of The World" BackgroundColor="#9D8090" FontSize="18" HeightRequest="50"/>
+
+            <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+              
+                <BoxView Color="#F4DBD8" Grid.Row="0"  Grid.ColumnSpan="2"/>
+                <Entry x:Name="Title" Placeholder="Title"   Grid.Row="0"  Grid.ColumnSpan="2" Text="{Binding Title}" />
+                <BoxView Color="#BEA8A7" Grid.Row="1" Grid.ColumnSpan="2"/>
+                <Entry x:Name="RecipeDescription" Placeholder="RecipeDescription" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding RecipeDescription}" />
+                <BoxView Color="#C09891" Grid.Row="2" Grid.ColumnSpan="2"/>
+                <Entry x:Name="Instructions"  Placeholder="Instructions and Ingridients" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Instructions}" />
+                <Picker Title="Tags" BackgroundColor="#775144" ItemsSource="{Binding Tags}" ItemDisplayBinding="{Binding TagName}" SelectedItem="{Binding SelectedTag}"  Style="{StaticResource entry}" Grid.Row="3" Grid.ColumnSpan="2" />
+                <Label Text="{Binding TagError}" IsVisible="{Binding ShowTagError}" />
+                <Button Command="{Binding SubmitCommand}" Text="Post!" BackgroundColor="#744B44" Grid.Row="4"  Grid.ColumnSpan="2"/>
+
+            </Grid>
+        </StackLayout>
   </ContentView.Content>
 </ContentView>
