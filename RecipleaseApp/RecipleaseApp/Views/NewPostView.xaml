@@ -27,6 +27,7 @@
                 <Entry x:Name="Instructions"  Placeholder="Instructions and Ingridients" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Instructions}" />
                 <Picker Title="Tags" BackgroundColor="#775144" ItemsSource="{Binding Tags}" ItemDisplayBinding="{Binding TagName}" SelectedItem="{Binding SelectedTag}"  Style="{StaticResource entry}" Grid.Row="3" Grid.ColumnSpan="2" />
                 <Label Text="{Binding TagError}" IsVisible="{Binding ShowTagError}" />
+                <Image x:Name="theImage" Source="{Binding UserImgSrc}" Style="{StaticResource Image}" Grid.Row="4"  Grid.ColumnSpan="2" />
                 <Button Command="{Binding SubmitCommand}" Text="Post!" BackgroundColor="#744B44" Grid.Row="4"  Grid.ColumnSpan="2"/>
 
             </Grid>

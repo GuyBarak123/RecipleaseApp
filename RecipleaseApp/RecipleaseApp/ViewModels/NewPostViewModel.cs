@@ -236,8 +236,35 @@ namespace RecipleaseApp.ViewModels
 
 
         #endregion
+        #region Photo Origin
+        private string recipeImgSrc;
 
-
+        public string RecipeImgSrc
+        {
+            get => recipeImgSrc;
+            set
+            {
+                recipeImgSrc = value;
+                OnPropertyChanged("RecipeImgSrc");
+            }
+        }
+        private const string DEFAULT_PHOTO_SRC = "defaultphoto.jpg";
+        #endregion
+        #region server status
+        private string serverStatus;
+        public string ServerStatus
+        {
+            get { return serverStatus; }
+            set
+            {
+                serverStatus = value;
+                OnPropertyChanged("ServerStatus");
+            }
+        }
+        #endregion
+       // This contact is a reference to the updated or new created contact
+        private Recipe theRecipe;
+        public event Action<Recipe, Recipe> RecipeUpdatedEvent;
         public Action<Page> NavigateToPageEvent;
 
         //submit command
@@ -252,10 +279,45 @@ namespace RecipleaseApp.ViewModels
                 Instructions=this.instructions,
                 TagId = this.tag.TagId
             };
-
+            ServerStatus = "מתחבר לשרת...";
+            await App.Current.MainPage.Navigation.PushModalAsync(new Views.ServerStatusPage(this));
+            RecipleaseAPIProxy reciproxy = RecipleaseAPIProxy.CreateProxy();
+            await App.Current.MainPage.Navigation.PushModalAsync(new Views.ServerStatusPage(this));
           
+            Recipe newRC = await proxy.UpdateRecipe(this.theRecipe);
+         //   ContactsAPIProxy proxy = ContactsAPIProxy.CreateProxy();
+            //UserContact newUC = await proxy.UpdateContact(this.theContact);
+            if (newRC == null)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Saving The Recipe Failed", "OK");
+                await App.Current.MainPage.Navigation.PopModalAsync();
+            }
+            else
+            {
+                if (this.imageFileResult != null)
+                {
+                    ServerStatus = "Uploading......";
 
-            Recipe R= await proxy.NewPostAsync(recipe);
+                    bool success = await proxy.UploadImage(new FileInfo()
+                    {
+                        Name = this.imageFileResult.FullPath
+                    }, $"{newRC.RecipeId}.jpg");
+                }
+            }
+            ServerStatus = "Saving Data...";
+            //if someone registered to get the contact added event, fire the event
+            if (this.RecipeUpdatedEvent != null)
+            {
+                this.RecipeUpdatedEvent(newRC, this.theRecipe);
+            }
+            //close the message and add contact windows!
+
+            await App.Current.MainPage.Navigation.PopAsync();
+            await App.Current.MainPage.Navigation.PopModalAsync();
+
+
+
+            Recipe R = await proxy.NewPostAsync(recipe);
             if (R == null)
             {
                 await App.Current.MainPage.DisplayAlert("Error", "Something Happened! The Post Did Not Upload ", "Ok");
@@ -279,6 +341,47 @@ namespace RecipleaseApp.ViewModels
         //    Page p = new ProfileView();
         //    App.Current.MainPage = p;
         //}
+
+        FileResult imageFileResult;
+        public event Action<ImageSource> SetImageSourceEvent;
+        public ICommand PickImageCommand => new Command(OnPickImage);
+        public async void OnPickImage()
+        {
+            FileResult result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions()
+            {
+                Title = "pick a picture"
+            });
+
+            if (result != null)
+            {
+                this.imageFileResult = result;
+
+                var stream = await result.OpenReadAsync();
+                ImageSource imgSource = ImageSource.FromStream(() => stream);
+                if (SetImageSourceEvent != null)
+                    SetImageSourceEvent(imgSource);
+            }
+        }
+
+        ///The following command handle the take photo button
+        public ICommand CameraImageCommand => new Command(OnCameraImage);
+        public async void OnCameraImage()
+        {
+            var result = await MediaPicker.CapturePhotoAsync(new MediaPickerOptions()
+            {
+                Title = "Take a picture"
+            });
+
+            if (result != null)
+            {
+                this.imageFileResult = result;
+                var stream = await result.OpenReadAsync();
+                ImageSource imgSource = ImageSource.FromStream(() => stream);
+                if (SetImageSourceEvent != null)
+                    SetImageSourceEvent(imgSource);
+            }
+        }
+
 
     }
 }
