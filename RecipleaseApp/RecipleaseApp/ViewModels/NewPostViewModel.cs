@@ -285,15 +285,15 @@ namespace RecipleaseApp.ViewModels
             await App.Current.MainPage.Navigation.PushModalAsync(new Views.ServerStatusPage(this));
           
             Recipe newRC = await proxy.UpdateRecipe(this.theRecipe);
-         //   ContactsAPIProxy proxy = ContactsAPIProxy.CreateProxy();
-            //UserContact newUC = await proxy.UpdateContact(this.theContact);
-            if (newRC == null)
-            {
-                await App.Current.MainPage.DisplayAlert("Error", "Saving The Recipe Failed", "OK");
-                await App.Current.MainPage.Navigation.PopModalAsync();
-            }
-            else
-            {
+        
+
+            //if (newRC == null)
+            //{
+            //    await App.Current.MainPage.DisplayAlert("Error", "Saving The Recipe Failed", "OK");
+            //    await App.Current.MainPage.Navigation.PopModalAsync();
+            //}
+            //else
+            //{
                 if (this.imageFileResult != null)
                 {
                     ServerStatus = "Uploading......";
@@ -303,7 +303,7 @@ namespace RecipleaseApp.ViewModels
                         Name = this.imageFileResult.FullPath
                     }, $"{newRC.RecipeId}.jpg");
                 }
-            }
+            //}
             ServerStatus = "Saving Data...";
             //if someone registered to get the contact added event, fire the event
             if (this.RecipeUpdatedEvent != null)
@@ -369,7 +369,7 @@ namespace RecipleaseApp.ViewModels
         {
             var result = await MediaPicker.CapturePhotoAsync(new MediaPickerOptions()
             {
-                Title = "Take a picture"
+                Title = "צלם תמונה"
             });
 
             if (result != null)
@@ -381,7 +381,6 @@ namespace RecipleaseApp.ViewModels
                     SetImageSourceEvent(imgSource);
             }
         }
-
 
     }
 }

@@ -10,7 +10,7 @@ using RecipleaseApp.Models;
 using RecipleaseApp.Views;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RecipleaseApp.Services;
+
 
 namespace RecipleaseApp.ViewModels
 {
