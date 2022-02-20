@@ -4,7 +4,8 @@
                NavigationPage.HasNavigationBar="False"
              x:Class="RecipleaseApp.Views.NewPostView">
   <ContentView.Content>
-      <StackLayout>
+        
+        <StackLayout>
 
             <Label Text="Write And Share Your Recipe With The Rest Of The World" BackgroundColor="#9D8090" FontSize="18" HeightRequest="50"/>
 
@@ -28,7 +29,7 @@
                 <Picker Title="Tags" BackgroundColor="#775144" ItemsSource="{Binding Tags}" ItemDisplayBinding="{Binding TagName}" SelectedItem="{Binding SelectedTag}"  Style="{StaticResource entry}" Grid.Row="3" Grid.ColumnSpan="2" />
                 <Label Text="{Binding TagError}" IsVisible="{Binding ShowTagError}" />
                 <Frame Grid.ColumnSpan="2"  Grid.Row="4" Style="{StaticResource ImageFrame}">
-                    <Image x:Name="theImage" Source="{Binding UserImgSrc}" Style="{StaticResource Image}"/>
+                    <Image x:Name="theImage" Source="{Binding RecipeImgSrc}" Style="{StaticResource Image}"/>
                 </Frame>
                 <ImageButton Padding="0" Margin="0" Source="galleryIcon.png" HorizontalOptions="End" BackgroundColor="White"  Grid.Row="5" Command="{Binding PickImageCommand}"/>
                 <ImageButton Padding="0" Margin="0" Source="cameraIcon.png" HorizontalOptions="Start" Grid.Row="5" BackgroundColor="White" Command="{Binding CameraImageCommand}"/>
@@ -37,5 +38,6 @@
 
             </Grid>
         </StackLayout>
-  </ContentView.Content>
+        
+    </ContentView.Content>
 </ContentView>

@@ -17,9 +17,15 @@ namespace RecipleaseApp.Views
         {
             
            NewPostViewModel context = new NewPostViewModel();
-            context.NavigateToPageEvent += (p) => Navigation.PushAsync(p);
+          
             this.BindingContext = context;
+            context.SetImageSourceEvent += OnSetImageSource;
             InitializeComponent();
+        }
+
+        public void OnSetImageSource(ImageSource imgSource)
+        {
+            theImage.Source = imgSource;
         }
     }
 }
