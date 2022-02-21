@@ -254,7 +254,7 @@ namespace RecipleaseApp.ViewModels
             }
         }
         private const string DEFAULT_PHOTO_SRC = "defaultphoto.jpg";
-        private readonly object App;
+        //private readonly object App;
         #endregion
         #region server status
         private string serverStatus;
@@ -278,12 +278,12 @@ namespace RecipleaseApp.ViewModels
         private async void OnSubmit()
         {
             App app = (App)App.Current;
-            app.TheUser = u;
+            
 
             RecipleaseAPIProxy proxy = RecipleaseAPIProxy.CreateProxy();
             Recipe recipe = new Recipe
             {
-                UserId = this.App.u.UserId,
+                UserId = app.TheUser.UserId,
                 Title=this.title,
                 RecipeDescription=this.recipeDescription,
                 Instructions=this.instructions,
@@ -299,10 +299,12 @@ namespace RecipleaseApp.ViewModels
             if (newRC == null)
             {
                 await App.Current.MainPage.DisplayAlert("Error", "Saving The Recipe Failed", "OK");
-                await App.Current.MainPage.Navigation.PopModalAsync();
+                //await App.Current.MainPage.Navigation.PopModalAsync();
             }
             else
             {
+                app.TheUser.Recipes.Add(newRC);
+
                 if (this.imageFileResult != null)
                 {
                     ServerStatus = "Uploading......";
@@ -311,37 +313,28 @@ namespace RecipleaseApp.ViewModels
                     {
                         Name = this.imageFileResult.FullPath
                     }, $"{newRC.RecipeId}.jpg");
+
+                    if (!success)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Error", "  Recipe was saved without the Image!", "OK");
+                        //await App.Current.MainPage.Navigation.PopModalAsync();
+                    }
+                    else
+                    {
+                        if (this.RecipeUpdatedEvent != null)
+                        {
+                            this.RecipeUpdatedEvent(newRC, this.theRecipe);
+                        }
+                    }
+                    
                 }
            }
-            ServerStatus = "Saving Data...";
-            //if someone registered to get the contact added event, fire the event
-            if (this.RecipeUpdatedEvent != null)
-            {
-                this.RecipeUpdatedEvent(newRC, this.theRecipe);
-            }
+            
+            
             //close the message and add contact windows!
 
-            await App.Current.MainPage.Navigation.PopAsync();
+            //await App.Current.MainPage.Navigation.PopAsync();
             await App.Current.MainPage.Navigation.PopModalAsync();
-
-
-
-            Recipe R = await proxy.NewPostAsync(recipe);
-            if (R == null)
-            {
-                await App.Current.MainPage.DisplayAlert("Error", "Something Happened! The Post Did Not Upload ", "Ok");
-                Console.WriteLine("Something Happened! The Post Did Not Upload");
-            }
-            else
-            {
-                App app = (App)App.Current;
-               // app.TheUser = R;
-                Console.WriteLine("Thank You For Signing Up Tp Reciplease!");
-                await App.Current.MainPage.DisplayAlert("Ok", "Great, The recipe was posted! no need to submit again", "Success");
-
-               // Page p = new ProfileView();
-                //App.Current.MainPage = p;
-            }
         }
 
         //public ICommand GoToLogInCommand => new Command(OnGoToLogInSubmit);
