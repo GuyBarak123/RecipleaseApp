@@ -11,7 +11,10 @@ using RecipleaseApp.Views;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
-
+using RecipleaseApp;
+using RecipleaseApp.Services;
+using RecipleaseApp.Models;
+using RecipleaseApp.Views;
 namespace RecipleaseApp.ViewModels
 {
     class NewPostViewModel:INotifyPropertyChanged
@@ -21,6 +24,8 @@ namespace RecipleaseApp.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
 
         public static class ERROR_MESSAGES
         {
@@ -249,6 +254,7 @@ namespace RecipleaseApp.ViewModels
             }
         }
         private const string DEFAULT_PHOTO_SRC = "defaultphoto.jpg";
+        private readonly object App;
         #endregion
         #region server status
         private string serverStatus;
@@ -271,9 +277,13 @@ namespace RecipleaseApp.ViewModels
         public ICommand SubmitCommand => new Command(OnSubmit);
         private async void OnSubmit()
         {
+            App app = (App)App.Current;
+            app.TheUser = u;
+
             RecipleaseAPIProxy proxy = RecipleaseAPIProxy.CreateProxy();
-            Recipe recipe = new Recipe 
-            { 
+            Recipe recipe = new Recipe
+            {
+                UserId = this.App.u.UserId,
                 Title=this.title,
                 RecipeDescription=this.recipeDescription,
                 Instructions=this.instructions,
@@ -281,19 +291,18 @@ namespace RecipleaseApp.ViewModels
             };
             ServerStatus = "מתחבר לשרת...";
             await App.Current.MainPage.Navigation.PushModalAsync(new Views.ServerStatusPage(this));
-            RecipleaseAPIProxy reciproxy = RecipleaseAPIProxy.CreateProxy();
-            await App.Current.MainPage.Navigation.PushModalAsync(new Views.ServerStatusPage(this));
+            
           
-            Recipe newRC = await proxy.UpdateRecipe(this.theRecipe);
-        
+            Recipe newRC = await proxy.NewPostAsync(recipe);
 
-            //if (newRC == null)
-            //{
-            //    await App.Current.MainPage.DisplayAlert("Error", "Saving The Recipe Failed", "OK");
-            //    await App.Current.MainPage.Navigation.PopModalAsync();
-            //}
-            //else
-            //{
+
+            if (newRC == null)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Saving The Recipe Failed", "OK");
+                await App.Current.MainPage.Navigation.PopModalAsync();
+            }
+            else
+            {
                 if (this.imageFileResult != null)
                 {
                     ServerStatus = "Uploading......";
@@ -303,7 +312,7 @@ namespace RecipleaseApp.ViewModels
                         Name = this.imageFileResult.FullPath
                     }, $"{newRC.RecipeId}.jpg");
                 }
-            //}
+           }
             ServerStatus = "Saving Data...";
             //if someone registered to get the contact added event, fire the event
             if (this.RecipeUpdatedEvent != null)
