@@ -17,7 +17,7 @@ using RecipleaseApp.Models;
 using RecipleaseApp.Views;
 namespace RecipleaseApp.ViewModels
 {
-    class NewPostViewModel:INotifyPropertyChanged
+    class NewPostViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
@@ -116,7 +116,7 @@ namespace RecipleaseApp.ViewModels
 
         private string title;
 
-        public string Title 
+        public string Title
         {
             get { return title; }
             set
@@ -134,7 +134,7 @@ namespace RecipleaseApp.ViewModels
             get { return titleError; }
             set
             {
-               titleError = value;
+                titleError = value;
                 OnPropertyChanged("TitleError");
             }
         }
@@ -268,7 +268,7 @@ namespace RecipleaseApp.ViewModels
             }
         }
         #endregion
-       // This contact is a reference to the updated or new created contact
+        // This contact is a reference to the updated or new created contact
         private Recipe theRecipe;
         public event Action<Recipe, Recipe> RecipeUpdatedEvent;
         public Action<Page> NavigateToPageEvent;
@@ -278,21 +278,21 @@ namespace RecipleaseApp.ViewModels
         private async void OnSubmit()
         {
             App app = (App)App.Current;
-            
+
 
             RecipleaseAPIProxy proxy = RecipleaseAPIProxy.CreateProxy();
             Recipe recipe = new Recipe
             {
                 UserId = app.TheUser.UserId,
-                Title=this.title,
-                RecipeDescription=this.recipeDescription,
-                Instructions=this.instructions,
+                Title = this.title,
+                RecipeDescription = this.recipeDescription,
+                Instructions = this.instructions,
                 TagId = this.tag.TagId
             };
             ServerStatus = "מתחבר לשרת...";
             await App.Current.MainPage.Navigation.PushModalAsync(new Views.ServerStatusPage(this));
-            
-          
+
+
             Recipe newRC = await proxy.NewPostAsync(recipe);
 
 
@@ -326,11 +326,11 @@ namespace RecipleaseApp.ViewModels
                             this.RecipeUpdatedEvent(newRC, this.theRecipe);
                         }
                     }
-                    
+
                 }
-           }
-            
-            
+            }
+
+
             //close the message and add contact windows!
 
             //await App.Current.MainPage.Navigation.PopAsync();

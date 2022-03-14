@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="{Binding Title}" HorizontalTextAlignment="Center" FontSize="Large"/>
-            <Image Source="{Binding FrontImageUrl}" WidthRequest="400" HeightRequest="400"/>
+            <Image Source="{Binding ImgSource}" WidthRequest="400" HeightRequest="400"/>
             <Label Text="{Binding RecipeDescription }" HorizontalTextAlignment="Center" FontSize="Caption"/>
             <Label Text="{Binding Instructions}" HorizontalTextAlignment="Center" FontSize="Body"/>
 

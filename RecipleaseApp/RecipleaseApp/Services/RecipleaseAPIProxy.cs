@@ -11,7 +11,7 @@ using System.Text.Encodings.Web;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using System.IO;
-
+using System.Linq;
 namespace RecipleaseApp.Services
 {
     class RecipleaseAPIProxy
@@ -30,6 +30,7 @@ namespace RecipleaseApp.Services
         private string basePhotosUri;
         private static RecipleaseAPIProxy proxy = null;
 
+        public string GetPhotoUri() { return this.basePhotosUri; }
         public static RecipleaseAPIProxy CreateProxy()
         {
             string baseUri;
@@ -103,6 +104,41 @@ namespace RecipleaseApp.Services
             }
         }
 
+        public async Task<List<Recipe>> GetRecepiesAsync()
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetRecepies");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    List<Recipe> tbl = JsonSerializer.Deserialize<List<Recipe>>(content, options);
+
+                    LookupTables lookupTables = ((App)App.Current).Lookups;
+                    foreach (Recipe r in tbl)
+                    {
+                        r.Tag = lookupTables.Tags.Where(t => t.TagId == r.TagId).FirstOrDefault();
+                    }
+
+                    return tbl;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
         public async Task<LookupTables> GetLookupsAsync()
         {
             try
@@ -146,6 +182,11 @@ namespace RecipleaseApp.Services
                     };
                     string content = await response.Content.ReadAsStringAsync();
                     User u = JsonSerializer.Deserialize<User>(content, options);
+                    LookupTables lookupTables = ((App)App.Current).Lookups;
+                    foreach(Recipe r in u.Recipes)
+                    {
+                        r.Tag = lookupTables.Tags.Where(t => t.TagId == r.TagId).FirstOrDefault();
+                    }
                     return u;
                 }
                 else

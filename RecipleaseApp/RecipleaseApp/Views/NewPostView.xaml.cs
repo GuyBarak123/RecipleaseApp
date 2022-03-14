@@ -7,7 +7,7 @@ using RecipleaseApp.ViewModels;
 using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using RecipleaseApp.Models;
 namespace RecipleaseApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -20,9 +20,23 @@ namespace RecipleaseApp.Views
           
             this.BindingContext = context;
             context.SetImageSourceEvent += OnSetImageSource;
+            context.RecipeUpdatedEvent += OnPostSaved;
             InitializeComponent();
         }
 
+        private Page FindPage()
+        {
+            Element e = this;
+            while (!(e is Page))
+                e = e.Parent;
+            return (Page)e;
+        }
+        public void OnPostSaved(Recipe newRecipe, Recipe old)
+        {
+            Page p = FindPage();
+            if (p is MainTabs)
+                ((MainTabs)p).RefreshPosts();
+        }
         public void OnSetImageSource(ImageSource imgSource)
         {
             theImage.Source = imgSource;

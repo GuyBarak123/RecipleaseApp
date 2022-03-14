@@ -20,5 +20,7 @@ namespace RecipleaseApp.Views
             this.BindingContext = context;
             InitializeComponent();
         }
+
+        
     }
 }

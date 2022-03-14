@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using RecipleaseApp.Services;
 namespace RecipleaseApp.Models
 {
     public partial class Recipe
@@ -26,5 +26,16 @@ namespace RecipleaseApp.Models
         public virtual List<Comment> Comments { get; set; }
         public virtual List<Like> Likes { get; set; }
         public virtual List<RecipeIng> RecipeIngs { get; set; }
+
+        //additional properties only on app side
+        public string ImgSource
+        {
+            get
+            {
+                RecipleaseAPIProxy proxy = RecipleaseAPIProxy.CreateProxy();
+                string str = $"{proxy.GetPhotoUri()}{this.RecipeId}.jpg";
+                return str;
+            }
+        }
     }
 }

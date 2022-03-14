@@ -83,11 +83,13 @@ namespace RecipleaseApp.ViewModels
             InitRecipes();
         }
 
-        private void InitRecipes()
+        private async void InitRecipes()
         {
             isRefreshing = true;
             App theApp = (App)App.Current;
-            this.allRecipes = (List<Recipe>)theApp.TheUser.Recipes;
+            RecipleaseAPIProxy proxy = RecipleaseAPIProxy.CreateProxy();
+
+            this.allRecipes = await proxy.GetRecepiesAsync();
 
             this.FilteredRecipes = new ObservableCollection<Recipe>(this.allRecipes.OrderBy(R => R.Title));
             SearchTerm = string.Empty;

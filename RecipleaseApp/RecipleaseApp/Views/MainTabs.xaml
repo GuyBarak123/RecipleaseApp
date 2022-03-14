@@ -6,21 +6,21 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="RecipleaseApp.Views.MainTabs">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White">
-            <xct:TabView TabStripPlacement="Bottom" TabStripHeight="75" >
+        <StackLayout BackgroundColor="White" x:Name="TheStack">
+            <xct:TabView TabStripPlacement="Bottom" TabStripHeight="75">
                 <xct:TabViewItem Text="Explore" TextColor="White" BackgroundColor="#BFB5AF" TextColorSelected="Black"  Icon="ShouldBeBig.png">
                     <xct:TabViewItem.Content>
-                        <local:ExploreTabView></local:ExploreTabView>
+                        <local:ExploreTabView x:Name="ExploreTab"></local:ExploreTabView>
                     </xct:TabViewItem.Content>
                 </xct:TabViewItem>
-                <xct:TabViewItem Text="New Post" BackgroundColor="#D5B9B2" TextColor="White" TextColorSelected="Black" BadgeTextColor="White" Icon="RPostIcon.png" FontSize="10" TapCommand="{Binding GoToNewPostCommand}" >
+                <xct:TabViewItem x:Name="NewPostTab" Text="New Post" BackgroundColor="#D5B9B2" TextColor="White" TextColorSelected="Black" BadgeTextColor="White" Icon="RPostIcon.png" FontSize="10" TapCommand="{Binding GoToNewPostCommand}" >
                     <xct:TabViewItem.Content>
                         <local:NewPostView></local:NewPostView>
                     </xct:TabViewItem.Content>
                 </xct:TabViewItem>
-                <xct:TabViewItem Text="profile" BackgroundColor="#A26769" TextColor="White" TextColorSelected="Black" BadgeTextColor="White" Icon="ProfileIcon.png" FontSize="10"  TapCommand="{Binding GoToProfileCommand}" >
+                <xct:TabViewItem  Text="profile" BackgroundColor="#A26769" TextColor="White" TextColorSelected="Black" BadgeTextColor="White" Icon="ProfileIcon.png" FontSize="10"  TapCommand="{Binding GoToProfileCommand}" >
                     <xct:TabViewItem.Content>
-                        <local:ProfileView></local:ProfileView>
+                        <local:ProfileView x:Name="ProfileTab"></local:ProfileView>
                     </xct:TabViewItem.Content>
                 </xct:TabViewItem>
             </xct:TabView>

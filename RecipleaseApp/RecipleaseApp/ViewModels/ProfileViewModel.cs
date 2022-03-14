@@ -39,7 +39,7 @@ namespace RecipleaseApp.ViewModels
                 {
 
                     this.filteredRecipes = value;
-                    OnPropertyChanged("FilteredContacts");
+                    OnPropertyChanged("FilteredRecipes");
                 }
             }
         }
@@ -63,11 +63,17 @@ namespace RecipleaseApp.ViewModels
         }
         
         
-        private void InitRecipes()
+        private async void InitRecipes()
         {
             isRefreshing = true;
             App theApp = (App)App.Current;
-            this.allRecipes = (List<Recipe>)theApp.TheUser.Recipes;
+            User u = theApp.TheUser;
+            RecipleaseAPIProxy proxy = RecipleaseAPIProxy.CreateProxy();
+
+            this.allRecipes = await proxy.GetRecepiesAsync();
+
+            this.allRecipes = this.allRecipes.Where(r => r.UserId == u.UserId).ToList();
+            
 
             this.FilteredRecipes = new ObservableCollection<Recipe>(this.allRecipes.OrderBy(R => R.Title));
             SearchTerm = string.Empty;
