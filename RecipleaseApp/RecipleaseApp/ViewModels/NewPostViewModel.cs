@@ -12,9 +12,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using RecipleaseApp;
-using RecipleaseApp.Services;
-using RecipleaseApp.Models;
-using RecipleaseApp.Views;
+
 namespace RecipleaseApp.ViewModels
 {
     class NewPostViewModel : INotifyPropertyChanged
@@ -330,6 +328,8 @@ namespace RecipleaseApp.ViewModels
                 }
             }
 
+       
+           
 
             //close the message and add contact windows!
 

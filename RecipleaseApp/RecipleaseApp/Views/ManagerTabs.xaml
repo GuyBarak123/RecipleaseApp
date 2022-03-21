@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:RecipleaseApp.Views"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+              xmlns:local="clr-namespace:RecipleaseApp.Views"
+                    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              NavigationPage.HasNavigationBar="False"
-             x:Class="RecipleaseApp.Views.MainTabs">
+             x:Class="RecipleaseApp.Views.ManagerTabs">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White" x:Name="TheStack">
             <xct:TabView x:Name="TheTabView" TabStripPlacement="Bottom" TabStripHeight="75">
@@ -24,6 +25,11 @@
                     </xct:TabViewItem.Content>
                 </xct:TabViewItem>
                 
+                <xct:TabViewItem  Text="manager" BackgroundColor="#A26788" TextColor="White" TextColorSelected="Black" BadgeTextColor="White" Icon="ProfileIcon.png" FontSize="10"  TapCommand="{Binding GoToManagerCommand}" >
+                    <xct:TabViewItem.Content>
+                        <local:ProfileView x:Name="ManagerTab"></local:ProfileView>
+                    </xct:TabViewItem.Content>
+                </xct:TabViewItem>
             </xct:TabView>
         </StackLayout>
     </ContentPage.Content>

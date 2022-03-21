@@ -16,9 +16,9 @@ namespace RecipleaseApp.ViewModels
         public string RecipeDescription { get; set; }
         public string Instructions { get; set; }
         public List<RecipeIng> Ingredients { get; set; }
-        public string FrontImageUrl { get; set; }
+        public string ImgSource { get; set; }
         public Tag Tag { get; set; }
-        public string LastImageUrl { get; set; }
+       
         public DateTime? Time { get; set; }
 
 

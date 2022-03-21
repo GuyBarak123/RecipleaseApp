@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using RecipleaseApp.ViewModels;
+using RecipleaseApp.Models;
 namespace RecipleaseApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -19,10 +20,17 @@ namespace RecipleaseApp.Views
 
             ProfileViewModel vmProfile = (ProfileViewModel)this.ProfileTab.BindingContext;
             vmProfile.OnRefresh();
+
+            //ManagerGraphsViewModel vmManager = (ManagerGraphsViewModel)this.ManagerTab.BindingContext;
+            //vmManager.OnRefresh();
         }
         public MainTabs()
         {
             InitializeComponent();
+            //User u = ((App)App.Current).TheUser;
+           
+            //    TheTabView.TabItems.Remove(ManagerTabViewItem);
+            
         }
     }
 }

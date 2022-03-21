@@ -5725,6 +5725,7 @@ namespace RecipleaseApp.Droid
 			global::Xamarin.Essentials.Resource.Id.text2 = global::RecipleaseApp.Droid.Resource.Id.text2;
 			global::Xamarin.Essentials.Resource.Id.time = global::RecipleaseApp.Droid.Resource.Id.time;
 			global::Xamarin.Essentials.Resource.Id.title = global::RecipleaseApp.Droid.Resource.Id.title;
+			global::Xamarin.Essentials.Resource.Id.view_tree_lifecycle_owner = global::RecipleaseApp.Droid.Resource.Id.view_tree_lifecycle_owner;
 			global::Xamarin.Essentials.Resource.Integer.status_bar_notification_info_maxnum = global::RecipleaseApp.Droid.Resource.Integer.status_bar_notification_info_maxnum;
 			global::Xamarin.Essentials.Resource.Layout.browser_actions_context_menu_page = global::RecipleaseApp.Droid.Resource.Layout.browser_actions_context_menu_page;
 			global::Xamarin.Essentials.Resource.Layout.browser_actions_context_menu_row = global::RecipleaseApp.Droid.Resource.Layout.browser_actions_context_menu_row;

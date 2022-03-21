@@ -72,7 +72,15 @@ namespace RecipleaseApp.ViewModels
                 app.TheUser = u;
                 //Move to next screen
                 //NavigateToPageEvent(new ExploreView());
-                NavigateToPageEvent(new MainTabs());
+                if (!u.IsAdmin)
+                {
+                    NavigateToPageEvent(new MainTabs());
+                }
+                else
+                {
+                    NavigateToPageEvent(new ManagerTabs());
+                }
+                    
             }
         }
 
