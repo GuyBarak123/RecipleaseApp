@@ -19,15 +19,11 @@
                         <local:NewPostView></local:NewPostView>
                     </xct:TabViewItem.Content>
                 </xct:TabViewItem>
-                <xct:TabViewItem  Text="profile" BackgroundColor="#A26769" TextColor="White" TextColorSelected="Black" BadgeTextColor="White" Icon="ProfileIcon.png" FontSize="10"  TapCommand="{Binding GoToProfileCommand}" >
-                    <xct:TabViewItem.Content>
-                        <local:ProfileView x:Name="ProfileTab"></local:ProfileView>
-                    </xct:TabViewItem.Content>
-                </xct:TabViewItem>
+               
                 
                 <xct:TabViewItem  Text="manager" BackgroundColor="#A26788" TextColor="White" TextColorSelected="Black" BadgeTextColor="White" Icon="ProfileIcon.png" FontSize="10"  TapCommand="{Binding GoToManagerCommand}" >
                     <xct:TabViewItem.Content>
-                        <local:ProfileView x:Name="ManagerTab"></local:ProfileView>
+                        <local:ManagerGraphsView x:Name="ManagerTab"></local:ManagerGraphsView>
                     </xct:TabViewItem.Content>
                 </xct:TabViewItem>
             </xct:TabView>

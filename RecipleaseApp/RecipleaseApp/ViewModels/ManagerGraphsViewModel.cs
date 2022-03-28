@@ -68,9 +68,59 @@ namespace RecipleaseApp.ViewModels
         {
             RecipleaseAPIProxy proxy = RecipleaseAPIProxy.CreateProxy();
             this.Users = await proxy.GetUsersAsync();
+
+          //  create chart
+                Chart chart;
+            switch (this.chartType % 7)
+            {
+                case 1:
+                    chart = new LineChart();
+                    break;
+                case 2:
+                    chart = new PieChart();
+                    break;
+                case 3:
+                    chart = new BarChart();
+                    break;
+                case 4:
+                    chart = new PointChart();
+                    break;
+                case 5:
+                    chart = new RadarChart();
+                    break;
+                case 6:
+                    chart = new DonutChart();
+                    break;
+                default:
+                    chart = new RadialGaugeChart();
+                    break;
+            }
+            List<ChartEntry> chartEntries = new List<ChartEntry>();
+            foreach (User U in this.Users)
+            {
+                var UserRecipes = U.Recipes.Count;
+                ChartEntry entry = new ChartEntry(UserRecipes)
+                {
+                    TextColor = SKColor.Parse("#3498db"),
+                    ValueLabelColor = SKColor.FromHsv(UserRecipes % 100, UserRecipes % 100 / 2, UserRecipes % 100 / 4),
+                    Color = SKColor.FromHsv(UserRecipes, UserRecipes / 2, UserRecipes / 4),
+                    Label = $"{U.UserId}",
+                    ValueLabel = $"{UserRecipes:N0}"
+                };
+                chartEntries.Add(entry);
+            }
+            chart.Entries = chartEntries;
+            chart.LabelTextSize += 10;
+
+            this.MainChart = chart;
         }
 
-
+        public ICommand NextChart => new Command(OnNextChart);
+        public void OnNextChart()
+        {
+            this.chartType++;
+            InitChart();
+        }
 
     }
 
