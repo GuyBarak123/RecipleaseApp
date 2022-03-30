@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using RecipleaseApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using RecipleaseApp.Models;
 
 namespace RecipleaseApp.Views
 {

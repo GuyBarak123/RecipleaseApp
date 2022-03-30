@@ -76,6 +76,23 @@ namespace RecipleaseApp.ViewModels
             }
         }
 
+
+        #region Selected Post
+        private object selectedRecipeLiked;
+        public Recipe SelectedRecipeLiked
+        {
+            get => (Recipe)selectedRecipeLiked;
+            set
+            {
+                if (this.selectedRecipeLiked != value)
+                {
+                    this.selectedRecipeLiked = value;
+                    OnPropertyChanged("SelectedRecipeLiked");
+                }
+
+            }
+        }
+        #endregion
         public ExploreViewModel()
         {
             this.SearchTerm = string.Empty;
@@ -153,6 +170,64 @@ namespace RecipleaseApp.ViewModels
         {
             InitRecipes();
         }
+        #endregion
+        #region Favorite Button
+        public ICommand AddToLikedButton { get; set; }
+        public async void AddToLikedRecipes(Recipe recipe)
+        {
+            bool fromDelete = true;
+            App app = (App)App.Current;
+
+
+
+            RecipleaseAPIProxy proxy = RecipleaseAPIProxy.CreateProxy();
+            if (recipe != null)
+            {
+                bool succeeded = await proxy.AddToLikedRecipes(recipe.RecipeId);
+                if (succeeded)
+                {
+                    User user = app.TheUser;
+                    bool found = false;
+                    Like foundedSaved = null;
+
+                    foreach (Like S in user.Likes)
+                    {
+                        if (recipe.RecipeId == S.RecipeId)
+                        {
+                            foundedSaved = S;
+                            found = true;
+                        }
+                    }
+                    if (found)
+                    {
+                        user.Likes.Remove(foundedSaved);
+                    }
+                    else
+                    {
+                        user.Likes.Add(new Like()
+                        {
+                            RecipeId = recipe.RecipeId,
+                            UserId = user.UserId,
+                            Recipe = recipe,
+                            User = user
+
+                        });
+                    }
+                    OnRefresh();
+
+                }
+
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", " The Post Was Not Added To Likes", "Cancel", FlowDirection.RightToLeft);
+                }
+            }
+
+            else
+                throw new Exception("Could Not Find Post. Try To Refresh ");
+
+        }
+
         #endregion
         #region selected recipe
         //Selection changed 
@@ -256,6 +331,30 @@ namespace RecipleaseApp.ViewModels
 
         //public event Action ClearSelection;
         #endregion
+        
+
+
+    
+
+
+        //public async void RefreshRecipes()
+        //{
+        //    RecipleaseAPIProxy proxy = RecipleaseAPIProxy.CreateProxy();
+        //    List<Recipe> RList= await proxy.
+        //   // GuitarsAndMoreAPIProxy proxy = GuitarsAndMoreAPIProxy.CreateProxy();
+        //    List<Post> pList = await proxy.GetListOfPostsAsync();
+        //    if (pList != null)
+        //    {
+        //        FullPostsList.Clear();
+        //        PostsList.Clear();
+        //        foreach (Post p in pList)
+        //        {
+        //            FullPostsList.Add(p);
+        //            PostsList.Add(p);
+        //        }
+        //    }
+        //}
+
 
 
     }

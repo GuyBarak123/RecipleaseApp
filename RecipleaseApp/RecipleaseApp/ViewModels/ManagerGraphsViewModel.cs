@@ -28,6 +28,7 @@ namespace RecipleaseApp.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+        private int Recipes;
         private List<User> Users;
         private Chart mainChart;
         public Chart MainChart
@@ -67,7 +68,7 @@ namespace RecipleaseApp.ViewModels
         private async void InitChart()
         {
             RecipleaseAPIProxy proxy = RecipleaseAPIProxy.CreateProxy();
-            this.Users = await proxy.GetUsersAsync();
+            this.Recipes = await proxy.GetRecepiesCountAsync();
 
           //  create chart
                 Chart chart;
@@ -99,13 +100,13 @@ namespace RecipleaseApp.ViewModels
             foreach (User U in this.Users)
             {
                 var UserRecipes = U.Recipes.Count;
-                ChartEntry entry = new ChartEntry(UserRecipes)
+                ChartEntry entry = new ChartEntry(Recipes)
                 {
                     TextColor = SKColor.Parse("#3498db"),
-                    ValueLabelColor = SKColor.FromHsv(UserRecipes % 100, UserRecipes % 100 / 2, UserRecipes % 100 / 4),
-                    Color = SKColor.FromHsv(UserRecipes, UserRecipes / 2, UserRecipes / 4),
+                    ValueLabelColor = SKColor.FromHsv(Recipes % 100, Recipes % 100 / 2, Recipes % 100 / 4),
+                    Color = SKColor.FromHsv(Recipes, Recipes / 2, Recipes / 4),
                     Label = $"{U.UserId}",
-                    ValueLabel = $"{UserRecipes:N0}"
+                    ValueLabel = $"{Recipes:N0}"
                 };
                 chartEntries.Add(entry);
             }
