@@ -68,7 +68,7 @@ namespace RecipleaseApp.ViewModels
         private async void InitChart()
         {
             RecipleaseAPIProxy proxy = RecipleaseAPIProxy.CreateProxy();
-            this.Recipes = await proxy.GetRecepiesCountAsync();
+            this.Users = await proxy.GetUsersAsync();
 
           //  create chart
                 Chart chart;
@@ -100,13 +100,13 @@ namespace RecipleaseApp.ViewModels
             foreach (User U in this.Users)
             {
                 var UserRecipes = U.Recipes.Count;
-                ChartEntry entry = new ChartEntry(Recipes)
+                ChartEntry entry = new ChartEntry(UserRecipes)
                 {
                     TextColor = SKColor.Parse("#3498db"),
-                    ValueLabelColor = SKColor.FromHsv(Recipes % 100, Recipes % 100 / 2, Recipes % 100 / 4),
-                    Color = SKColor.FromHsv(Recipes, Recipes / 2, Recipes / 4),
-                    Label = $"{U.UserId}",
-                    ValueLabel = $"{Recipes:N0}"
+                    ValueLabelColor = SKColor.FromHsv(UserRecipes % 100, UserRecipes % 100 / 2, UserRecipes % 100 / 4),
+                    Color = SKColor.FromHsv(UserRecipes, UserRecipes / 2, UserRecipes / 4),
+                    Label = $"{U.Name}",
+                    ValueLabel = $"{UserRecipes:N0}"
                 };
                 chartEntries.Add(entry);
             }

@@ -247,7 +247,9 @@ namespace RecipleaseApp.ViewModels
                     //FrontImageUrl = chosenRecipe.
                     Tag = chosenRecipe.Tag,
                     // LastImageUrl = chosenRecipe,
-                    Time = chosenRecipe.DateOfUpload
+                    Time = chosenRecipe.DateOfUpload,
+                    ImgSource = chosenRecipe.ImgSource
+                    
                  
 
 
