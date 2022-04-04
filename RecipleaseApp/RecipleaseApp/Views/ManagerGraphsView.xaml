@@ -4,14 +4,20 @@
                  xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              x:Class="RecipleaseApp.Views.ManagerGraphsView">
   <ContentView.Content>
-        
+        <ScrollView>
             <StackLayout>
                 <Label Text="{Binding Title}" FontSize="Large" HorizontalOptions="Center"></Label>
-                <Label Text="   " FontSize="Large"></Label>
-                <microcharts:ChartView Chart="{Binding MainChart}" HeightRequest="250"/>
-                <Label Text="   " FontSize="Large"></Label>
+                <Label Text="  recipes over time " FontSize="Large"></Label>
+                <microcharts:ChartView Chart="{Binding RecipeChart}" HeightRequest="250"/>
+                <Label Text=" how many genders" FontSize="Large"></Label>
+                <microcharts:ChartView Chart="{Binding GendersChart}" HeightRequest="250"/>
+                <Label Text="Sign Up over time" FontSize="Large"></Label>
+                <microcharts:ChartView Chart="{Binding SignUpChart}" HeightRequest="250"/>
+
                 <Button Text="Next Chart" Command="{Binding NextChart}"></Button>
             </StackLayout>
- 
+        </ScrollView>
+
+      
     </ContentView.Content>
 </ContentView>
