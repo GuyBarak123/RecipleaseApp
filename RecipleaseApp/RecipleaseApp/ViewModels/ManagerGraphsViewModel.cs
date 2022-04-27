@@ -136,7 +136,7 @@ namespace RecipleaseApp.ViewModels
                     ChartEntry entry = new ChartEntry(counter)
                     {
                         TextColor = SKColor.Parse("#3498db"),
-                        ValueLabelColor = SKColor.FromHsl(100, 100, 100),
+                        ValueLabelColor = SKColor.Parse("#FFC6FF"),
                         Color = SKColor.FromHsv(100, 100, 100),
                         Label = $"{r.DateOfUpload?.Day}-{r.DateOfUpload?.Month}-{r.DateOfUpload?.Year}",
                         ValueLabel = $"{counter:N0}"
