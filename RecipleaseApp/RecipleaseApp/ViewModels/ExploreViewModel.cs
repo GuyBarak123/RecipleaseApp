@@ -172,61 +172,61 @@ namespace RecipleaseApp.ViewModels
         }
         #endregion
         #region Favorite Button
-        public ICommand AddToLikedButton { get; set; }
-        public async void AddToLikedRecipes(Recipe recipe)
-        {
-            bool fromDelete = true;
-            App app = (App)App.Current;
+        //public ICommand AddToLikedButton { get; set; }
+        //public async void AddToLikedRecipes(Recipe recipe)
+        //{
+        //    bool fromDelete = true;
+        //    App app = (App)App.Current;
 
 
 
-            RecipleaseAPIProxy proxy = RecipleaseAPIProxy.CreateProxy();
-            if (recipe != null)
-            {
-                bool succeeded = await proxy.AddToLikedRecipes(recipe.RecipeId);
-                if (succeeded)
-                {
-                    User user = app.TheUser;
-                    bool found = false;
-                    Like foundedSaved = null;
+        //    RecipleaseAPIProxy proxy = RecipleaseAPIProxy.CreateProxy();
+        //    if (recipe != null)
+        //    {
+        //        bool succeeded = await proxy.AddToLikedRecipes(recipe.RecipeId);
+        //        if (succeeded)
+        //        {
+        //            User user = app.TheUser;
+        //            bool found = false;
+        //            Like foundedSaved = null;
 
-                    foreach (Like S in user.Likes)
-                    {
-                        if (recipe.RecipeId == S.RecipeId)
-                        {
-                            foundedSaved = S;
-                            found = true;
-                        }
-                    }
-                    if (found)
-                    {
-                        user.Likes.Remove(foundedSaved);
-                    }
-                    else
-                    {
-                        user.Likes.Add(new Like()
-                        {
-                            RecipeId = recipe.RecipeId,
-                            UserId = user.UserId,
-                            Recipe = recipe,
-                            User = user
+        //            foreach (Like S in user.Likes)
+        //            {
+        //                if (recipe.RecipeId == S.RecipeId)
+        //                {
+        //                    foundedSaved = S;
+        //                    found = true;
+        //                }
+        //            }
+        //            if (found)
+        //            {
+        //                user.Likes.Remove(foundedSaved);
+        //            }
+        //            else
+        //            {
+        //                user.Likes.Add(new Like()
+        //                {
+        //                    RecipeId = recipe.RecipeId,
+        //                    UserId = user.UserId,
+        //                    Recipe = recipe,
+        //                    User = user
 
-                        });
-                    }
-                    OnRefresh();
+        //                });
+        //            }
+        //            OnRefresh();
 
-                }
+        //        }
 
-                else
-                {
-                    await App.Current.MainPage.DisplayAlert("Error", " The Post Was Not Added To Likes", "Cancel", FlowDirection.RightToLeft);
-                }
-            }
+        //        else
+        //        {
+        //            await App.Current.MainPage.DisplayAlert("Error", " The Post Was Not Added To Likes", "Cancel", FlowDirection.RightToLeft);
+        //        }
+        //    }
 
-            else
-                throw new Exception("Could Not Find Post. Try To Refresh ");
+        //    else
+        //        throw new Exception("Could Not Find Post. Try To Refresh ");
 
-        }
+        //}
 
         #endregion
         #region selected recipe
@@ -243,12 +243,13 @@ namespace RecipleaseApp.ViewModels
                     Title = chosenRecipe.Title,
                     RecipeDescription = chosenRecipe.RecipeDescription,
                     Instructions = chosenRecipe.Instructions,
-                    Ingredients = chosenRecipe.RecipeIngs,
+                    Comments = new ObservableCollection<Comment>(chosenRecipe.Comments),
                     //FrontImageUrl = chosenRecipe.
                     Tag = chosenRecipe.Tag,
                     // LastImageUrl = chosenRecipe,
                     Time = chosenRecipe.DateOfUpload,
-                    ImgSource = chosenRecipe.ImgSource
+                    ImgSource = chosenRecipe.ImgSource,
+                    RecipeId = chosenRecipe.RecipeId
                     
                  
 

@@ -412,7 +412,7 @@ namespace RecipleaseApp.Services
                 return default;
             }
         }
-        public async Task<bool> AddToLikedRecipes(int recipeID)
+        public async Task<bool> AddToLikedRecipes(Recipe recipeID)
         {
             try
             {
@@ -421,7 +421,40 @@ namespace RecipleaseApp.Services
                     ReferenceHandler = ReferenceHandler.Preserve,
                     PropertyNameCaseInsensitive = true
                 };
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/AddToLikedRecipes?postID={recipeID}");
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/AddCommentToRecipe?postID={recipeID}");
+                if (response.IsSuccessStatusCode)
+                {
+
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    bool b = JsonSerializer.Deserialize<bool>(jsonContent, options);
+                    return b;
+                }
+
+                else
+                {
+                    return false;
+                }
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+        public async Task<bool> AddCommentToRecipe(Comment comment)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<Comment>(comment, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/AddCommentToRecipe", content);
                 if (response.IsSuccessStatusCode)
                 {
 

@@ -19,5 +19,8 @@ namespace RecipleaseApp.Models
         public DateTime? SignUpTime { get; set; }
         public virtual ICollection<Recipe> Recipes { get; set; }
         public virtual ICollection<Like> Likes { get; set; }
+        public virtual Tag Tag { get; set; }
+        public virtual Gender Gender { get; set; }
+
     }
 }

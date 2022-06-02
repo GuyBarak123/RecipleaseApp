@@ -3,31 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RecipleaseApp.Views.ShowRecipeView">
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout>
             <Label Text="{Binding Title}" HorizontalTextAlignment="Center" FontSize="Large"/>
             <Image Source="{Binding ImgSource}" WidthRequest="400" HeightRequest="400"/>
             <Label Text="{Binding RecipeDescription }" HorizontalTextAlignment="Center" FontSize="Caption"/>
             <Label Text="{Binding Instructions}" HorizontalTextAlignment="Center" FontSize="Body"/>
 
-            <CollectionView ItemsSource="{Binding Ingredients}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Label Text="{Binding Ingridient.IngridientName}" />
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            
 
             <Label Text="{Binding Tag.TagName}" HorizontalTextAlignment="Center" FontSize="Body"/>
 
 
+            <CollectionView ItemsSource="{Binding Comments}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding User.Name}" />
+                            <Label Text="{Binding Content}" />
+                        </StackLayout>
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
 
-
-
+            <BoxView Color="#BEA8A7"/>
+            <Entry x:Name="Comment" Placeholder="add commment"  Text="{Binding Comment}" />
+            <Button Command="{Binding SubmitCommand}" Text="Post!" BackgroundColor="#744B44" />
 
 
 
 
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

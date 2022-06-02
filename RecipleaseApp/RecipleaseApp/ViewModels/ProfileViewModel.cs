@@ -259,7 +259,7 @@ namespace RecipleaseApp.ViewModels
                     Title = chosenRecipe.Title,
                     RecipeDescription = chosenRecipe.RecipeDescription,
                     Instructions = chosenRecipe.Instructions,
-                    Ingredients = chosenRecipe.RecipeIngs,
+                    Comments = new ObservableCollection<Comment>(chosenRecipe.Comments),
                     //FrontImageUrl = chosenRecipe.
                     Tag = chosenRecipe.Tag,
                     // LastImageUrl = chosenRecipe,

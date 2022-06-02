@@ -26,11 +26,7 @@
 
 
 
-                <xct:TabViewItem  Text="Saved" BackgroundColor="#A26769" TextColor="White" TextColorSelected="Black" BadgeTextColor="White" Icon="ProfileIcon.png" FontSize="10"  TapCommand="{Binding GoToProfileCommand}" >
-                    <xct:TabViewItem.Content>
-                        <local:LikedRecipesView></local:LikedRecipesView>
-                    </xct:TabViewItem.Content>
-                </xct:TabViewItem>
+               
 
 
 
