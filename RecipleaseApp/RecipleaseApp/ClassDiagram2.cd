@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RecipleaseApp.ViewModels.ExploreViewModel">
+    <Position X="6.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAABAAFBAAAB4QQAAAAIiAgAAAAIAAAAAAECBEA=</HashCode>
+      <FileName>ViewModels\ExploreViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RecipleaseApp.ViewModels.LogInViewModel">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAACICAAAgAAQAAAAEgAEAAAADAAAAAgAAAAA=</HashCode>
+      <FileName>ViewModels\LogInViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RecipleaseApp.ViewModels.ManagerGraphsViewModel">
+    <Position X="10" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAGAAyAAAIEAAIAAAYQAIgEEAACAIAAAAAAAIAAA=</HashCode>
+      <FileName>ViewModels\ManagerGraphsViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RecipleaseApp.ViewModels.NewPostViewModel">
+    <Position X="8" Y="0.75" Width="2" />
+    <NestedTypes>
+      <Class Name="RecipleaseApp.ViewModels.NewPostViewModel.ERROR_MESSAGES" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModels\NewPostViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QICAECyAQAIoAMAUIIQAEBCgiggIAEAADKEIAIAjkAI=</HashCode>
+      <FileName>ViewModels\NewPostViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RecipleaseApp.ViewModels.PopUp_Weight">
+    <Position X="4" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAQAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\PopUp_Weight.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RecipleaseApp.ViewModels.ProfileViewModel">
+    <Position X="13.25" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAQABDACFAQAAh4QQAAAQIiAgEAAAKAAAAAgECBEA=</HashCode>
+      <FileName>ViewModels\ProfileViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RecipleaseApp.ViewModels.SavedRecipeViewModel">
+    <Position X="4" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\SavedRecipeViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RecipleaseApp.ViewModels.ShowRecipeViewModel">
+    <Position X="4.25" Y="4.75" Width="1.75" />
+    <NestedTypes>
+      <Class Name="RecipleaseApp.ViewModels.ShowRecipeViewModel.ERROR_MESSAGES" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModels\ShowRecipeViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAFAAEAAIgAEAAJgQAAAAAgAgIAAAIAAAACAAAoQQ=</HashCode>
+      <FileName>ViewModels\ShowRecipeViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RecipleaseApp.ViewModels.SignUpViewModel">
+    <Position X="1.25" Y="0.5" Width="2.5" />
+    <NestedTypes>
+      <Class Name="RecipleaseApp.ViewModels.SignUpViewModel.ERROR_MESSAGES" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModels\SignUpViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AIABECgAASIMAAA4JKQAqARggAAEIkACCKoACogiACI=</HashCode>
+      <FileName>ViewModels\SignUpViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

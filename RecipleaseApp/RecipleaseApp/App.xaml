@@ -34,7 +34,7 @@
                 <Setter Property="FontSize" Value="16"></Setter>
             </Style>
             <Style x:Key="logInSignUp" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="#D5B9B2"></Setter>
+                <Setter Property="BackgroundColor" Value="#E81CFF"></Setter>
                 <Setter Property="HasShadow" Value="True"></Setter>
                 <Setter Property="CornerRadius" Value="25"></Setter>
             </Style>
@@ -50,11 +50,11 @@
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"></Setter>
             </Style>
             <Style x:Key="logInG" TargetType="Grid">
-                <Setter Property="BackgroundColor" Value="#A26769"></Setter>
+                <Setter Property="BackgroundColor" Value="#CBFF49"></Setter>
                 <Setter Property="Padding" Value="20,0,20,20"></Setter>
             </Style>
             <Style x:Key="SignUpG" TargetType="Grid">
-                <Setter Property="BackgroundColor" Value="#A26769"></Setter>
+                <Setter Property="BackgroundColor" Value="#FFF95B"></Setter>
                 <Setter Property="Padding" Value="0"></Setter>
             </Style>
             <Style x:Key="logInSignUpDivG" TargetType="Grid">
