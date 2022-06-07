@@ -32,5 +32,20 @@ namespace RecipleaseApp.Views
             //    TheTabView.TabItems.Remove(ManagerTabViewItem);
             
         }
+
+        protected override void OnAppearing()
+        {
+            if (ExploreTab != null && ExploreTab.BindingContext != null)
+            {
+                ExploreViewModel vm = (ExploreViewModel)ExploreTab.BindingContext;
+                vm.InitRecipes();
+            }
+            if (ProfileTab != null && ProfileTab.BindingContext != null)
+            {
+                ProfileViewModel vm = (ProfileViewModel)ProfileTab.BindingContext;
+                vm.InitRecipes();
+            }
+            base.OnAppearing();
+        }
     }
 }

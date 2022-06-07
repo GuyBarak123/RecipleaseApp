@@ -21,6 +21,7 @@ namespace RecipleaseApp.Models
         public virtual ICollection<Like> Likes { get; set; }
         public virtual Tag Tag { get; set; }
         public virtual Gender Gender { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
     }
 }

@@ -33,6 +33,7 @@
             </Grid>
 
             <Button Text="Measurements" BackgroundColor="#C79B7F" Clicked="Button_Clicked"/>
+            <Button Text="LogOut" TextColor="Black" FontSize="15" HorizontalOptions="End" BackgroundColor="#0000" Command="{Binding LogoutCommand}"   />
             <StackLayout BackgroundColor="White">
                 <SearchBar x:Name="searchBar" 
                        Placeholder="Type a Search Term" 

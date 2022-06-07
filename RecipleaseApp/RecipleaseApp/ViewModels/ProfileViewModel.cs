@@ -23,7 +23,7 @@ namespace RecipleaseApp.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-        
+        private App currentApp { get; set; }
         private List<Recipe> allRecipes;
       // public Action<Page> NavigateToPageEvent;
         private ObservableCollection<Recipe> filteredRecipes;
@@ -63,7 +63,7 @@ namespace RecipleaseApp.ViewModels
         }
         
         
-        private async void InitRecipes()
+        public async void InitRecipes()
         {
             isRefreshing = true;
             App theApp = (App)App.Current;
@@ -280,11 +280,34 @@ namespace RecipleaseApp.ViewModels
 
 
         }
+        public Command LogoutCommand => new Command(Logout);
+        private async void Logout()
+        {
+            try
+            {
+                bool logout = await App.Current.MainPage.DisplayAlert("You Are Going To logOut", "Are You Sure?", "LogOut", "Cancel");
+                if (logout == false)
+                    return;
+                  RecipleaseAPIProxy Proxy = RecipleaseAPIProxy.CreateProxy();
+                bool LoggedOut = await Proxy.LogoutAsync(this.currentApp.TheUser);
+                if (!LoggedOut) //User didn't log out.
+                    return;
+
+                this.currentApp.TheUser = null;
+                await App.Current.MainPage.Navigation.PopToRootAsync();
+            }
+
+            catch
+            {
+
+            }
+        }
         #region Events
         //Events
         //This event is used to navigate to the monkey page
         public Action<Page> NavigateToPageEvent;
         #endregion
+
         #endregion
         //#region Update Existing Recipe
         //public ICommand UpdateRecipe => new Command<Recipe>(OnUpdateRecipe);

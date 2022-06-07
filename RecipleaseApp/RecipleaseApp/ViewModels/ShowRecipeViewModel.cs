@@ -88,7 +88,8 @@ namespace RecipleaseApp.ViewModels
             {
                 Content = this.comment,
                 RecipeId = this.RecipeId,
-                UserId = ((App)App.Current).TheUser.UserId
+                UserId = ((App)App.Current).TheUser.UserId,
+                User = app.TheUser
             };
           
 
@@ -109,9 +110,7 @@ namespace RecipleaseApp.ViewModels
             }
             else
             {
-               
-
-                
+                Comments.Add(comment);
             }
 
 

@@ -100,7 +100,7 @@ namespace RecipleaseApp.ViewModels
             InitRecipes();
         }
 
-        private async void InitRecipes()
+        public async void InitRecipes()
         {
             isRefreshing = true;
             App theApp = (App)App.Current;
