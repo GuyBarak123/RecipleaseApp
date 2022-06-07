@@ -283,23 +283,16 @@ namespace RecipleaseApp.ViewModels
         public Command LogoutCommand => new Command(Logout);
         private async void Logout()
         {
-            try
+       
+            bool answer = await App.Current.MainPage.DisplayAlert("Logout", "Do you Want To Logout?", "Logout", "Cancel", FlowDirection.RightToLeft);
+            if (answer)
             {
-                bool logout = await App.Current.MainPage.DisplayAlert("You Are Going To logOut", "Are You Sure?", "LogOut", "Cancel");
-                if (logout == false)
-                    return;
-                  RecipleaseAPIProxy Proxy = RecipleaseAPIProxy.CreateProxy();
-                bool LoggedOut = await Proxy.LogoutAsync(this.currentApp.TheUser);
-                if (!LoggedOut) //User didn't log out.
-                    return;
+                App theApp = (App)App.Current;
+                theApp.TheUser = null;
 
-                this.currentApp.TheUser = null;
-                await App.Current.MainPage.Navigation.PopToRootAsync();
-            }
-
-            catch
-            {
-
+                Page page = new LogInView();
+                page.Title = "login";
+                App.Current.MainPage = new NavigationPage(page) { BarBackgroundColor = Color.FromHex("#81cfe0") };
             }
         }
         #region Events
