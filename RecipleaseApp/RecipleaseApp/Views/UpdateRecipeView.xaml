@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RecipleaseApp.Views.UpdateRecipeView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Write And Share Your Recipe With The Rest Of The World" BackgroundColor="#9D8090" FontSize="18" HeightRequest="50"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*" />
+                    <RowDefinition />
+                    <RowDefinition Height="100" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <BoxView Color="#F4DBD8" Grid.Row="0"  Grid.ColumnSpan="2"/>
+                <Entry x:Name="Title" Placeholder="Title"   Grid.Row="0"  Grid.ColumnSpan="2" Text="{Binding Title}" />
+                <BoxView Color="#BEA8A7" Grid.Row="1" Grid.ColumnSpan="2"/>
+                <Entry x:Name="RecipeDescription" Placeholder="RecipeDescription" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding RecipeDescription}" />
+                <BoxView Color="#C09891" Grid.Row="2" Grid.ColumnSpan="2"/>
+                <Entry x:Name="Instructions"  Placeholder="Instructions and Ingridients" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Instructions}" />
+              
+           
+
+          
+
+            </Grid>
+        </StackLayout>
+
+       
+    </ContentPage.Content>
+</ContentPage>

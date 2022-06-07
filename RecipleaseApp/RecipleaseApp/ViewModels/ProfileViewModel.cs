@@ -295,9 +295,39 @@ namespace RecipleaseApp.ViewModels
                 App.Current.MainPage = new NavigationPage(page) { BarBackgroundColor = Color.FromHex("#81cfe0") };
             }
         }
-        #region Events
-        //Events
-        //This event is used to navigate to the monkey page
+
+
+        public ICommand UpdateRecipe => new Command<Recipe>(OnUpdateRecipe);
+        public void OnUpdateRecipe(Recipe obj)
+        {
+            if (obj is Recipe)
+            {
+                Recipe chosenRecipe = (Recipe)obj;
+                Page UpdatePage = new UpdateRecipeView(obj);
+                UpdateRecipeView UpdateContext = new UpdateRecipeView();
+
+            
+
+                UpdatePage.BindingContext = UpdateContext;
+                UpdatePage.Title = UpdateContext.Title;
+                NavigateToPageEvent(UpdatePage);
+                SelectedRecipe = null;
+                // OnRefresh();
+
+
+
+            }
+
+        }
+        //public Command GoToUpdateCommand => new Command<Recipe>(GoToUpdate);
+        //private async void GoToUpdate(Recipe recp)
+        //{
+        //    UpdateRecipeView updateRecipe = new UpdateRecipeView(recp);
+        //    await App.Current.MainPage.Navigation.PushAsync(updateRecipe);
+        //}
+            #region Events
+            //Events
+            //This event is used to navigate to the monkey page
         public Action<Page> NavigateToPageEvent;
         #endregion
 

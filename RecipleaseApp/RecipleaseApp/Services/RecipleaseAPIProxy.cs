@@ -508,5 +508,37 @@ namespace RecipleaseApp.Services
                 return false;
             }
         }
+
+        public async Task<Recipe> UpdateRecipeAsync(Recipe R)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<Recipe>(R, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/UpdateRecipe", content);
+                if (response.IsSuccessStatusCode)
+                {
+
+                    jsonObject = await response.Content.ReadAsStringAsync();
+                    Recipe UpdatedRecipe = JsonSerializer.Deserialize<Recipe>(jsonObject, options);
+                    return UpdatedRecipe;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+
+        }
     }
 }
